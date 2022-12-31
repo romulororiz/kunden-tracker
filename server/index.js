@@ -1,10 +1,10 @@
 const express = require('express');
+require('dotenv').config();
+require('colors');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorMiddleware');
 const port = process.env.PORT || 5000;
-require('dotenv').config();
-require('colors');
 
 // Connect DB
 connectDB();
@@ -27,6 +27,4 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 // Listen for requests
-app.listen(port, () => {
-	console.log(`Listening on port ${port}`);
-});
+app.listen(port, () => console.log(`Listening on port ${port}`));
