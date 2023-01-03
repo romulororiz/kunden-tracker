@@ -15,11 +15,12 @@ passport.use(
 			// Use the below code with a database - No user = User will be created. User exists = Log in user
 			User.findOne({ googleId: profile.id }).then(existingUser => {
 				if (existingUser) {
-					console.log(existingUser);
 					done(null, existingUser);
 				} else {
 					new User({
 						googleId: profile.id,
+						firstName: profile.name.givenName,
+						lastName: profile.name.familyName,
 						fullName: profile.displayName,
 						email: profile.emails[0].value,
 						avatar: profile.photos[0].value,
@@ -28,8 +29,6 @@ passport.use(
 						.then(user => done(null, user));
 				}
 			});
-
-			// return done(null, profile);
 		}
 	)
 );
