@@ -88,4 +88,65 @@ const addClient = asyncHandler(async (req, res) => {
 	res.status(201).json(client);
 });
 
-module.exports = { getClients, addClient, getClient };
+// @desc Delete client
+// @route DELETE /api/clients/:id
+// @access private
+const deleteClient = asyncHandler(async (req, res) => {
+	// get User
+	const user = await User.findById(req.user.id);
+
+	if (!user) {
+		res.status(401);
+		throw new Error('User not found');
+	}
+
+	const client = await Client.findById(req.params.id);
+
+	if (!client) {
+		res.status(404);
+		throw new Error('Client not found');
+	}
+
+	// Check if client belongs to User
+	if (client.user.toString() !== req.user.id) {
+		res.status(401);
+		throw new Error('Not Authorized');
+	}
+
+	await client.remove();
+
+	res.status(200).json({ message: 'Client deleted' });
+});
+
+// @desc Update client
+// @route PUT /api/clients/:id
+// @access private
+const updateClient = asyncHandler(async (req, res) => {
+	const client = await Client.findById(req.params.id);
+
+	if (!client) {
+		res.status(404);
+		throw new Error('Client not found');
+	}
+
+	if (client.user.toString() !== req.user.id) {
+		res.status(401);
+		throw new Error('Not authorized');
+	}
+
+	const updatedClient = await Client.findByIdAndUpdate(
+		req.params.id,
+		{ $set: req.body },
+		{ new: true }
+	);
+
+	res.status(200).json(updatedClient);
+});
+
+module.exports = {
+	getClients,
+	addClient,
+	getClient,
+	deleteClient,
+	updateClient,
+};
