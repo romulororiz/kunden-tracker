@@ -6,8 +6,6 @@ const Client = require('../models/Client');
 // @route GET /api/clients
 // @access private
 const getClients = asyncHandler(async (req, res) => {
-	console.log(req);
-
 	// get user
 	const user = await User.findById(req.user.id);
 
@@ -19,6 +17,33 @@ const getClients = asyncHandler(async (req, res) => {
 	const clients = await Client.find({ user: req.user.id });
 
 	res.status(200).json(clients);
+});
+
+// @desc Get client by ID
+// @route GET /api/clients/:id
+// @access private
+const getClient = asyncHandler(async (req, res) => {
+	// get user
+	const user = await User.findById(req.user.id);
+
+	if (!user) {
+		res.status(401);
+		throw new Error('User not found');
+	}
+
+	const client = await Client.findById(req.params.id);
+
+	if (!client) {
+		res.status(404);
+		throw new Error('Client not found');
+	}
+
+	if (client.user.toString() !== req.user.id) {
+		res.status(401);
+		throw new Error('Not authorized');
+	}
+
+	res.status(200).json(client);
 });
 
 // @desc Create new client
@@ -63,4 +88,4 @@ const addClient = asyncHandler(async (req, res) => {
 	res.status(201).json(client);
 });
 
-module.exports = { getClients, addClient };
+module.exports = { getClients, addClient, getClient };
