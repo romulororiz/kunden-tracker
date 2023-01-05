@@ -25,6 +25,11 @@
 		"@vitejs/plugin-react": "^3.0.0",
 		"eslint": "^8.31.0",
 		"eslint-config-react-app": "^7.0.1",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-purgecss": "^5.0.0",
+		"gulp-sass": "^5.1.0",
+		"sass": "^1.57.1",
 		"vite": "^4.0.0"
 	}
 }
