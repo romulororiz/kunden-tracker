@@ -1,17 +1,13 @@
 // theme colors
-$primary: #326dee !default;
-$secondary: #1ac886 !default;
-$error: #d32752 !default;
-$info: #f6c31c !default;
+$primary: #43abf0;
+$primary-darker: #368ec8;
+$secondary: #1ac886;
+$error: #d32752;
+$info: #f6c31c;
+$light-gray: #6e6e6e;
 
-// color pallete
-// Map
-$colors: (
-	'primary': $primary,
-	'secondary': $secondary,
-	'error': $error,
-	'info': $info,
-);
+// transition
+$ease-2: ease 0.2s all;
 
 // spacing
 $base-padding: 0.75rem;
@@ -19,7 +15,7 @@ $base-margin: 0.75rem;
 
 // borders
 $base-border-thickness: 1px;
-$base-border-radius: 20px;
+$base-border-radius: 12px;
 
 // box-shadow
 $base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);

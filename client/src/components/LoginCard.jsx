@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { reset, loginUser } from '@features/auth/authSlice';
+import LoginSvg from '@assets/svgs/login.svg';
 import '@styles/scss/LoginCard.scss';
 
 const LoginCard = () => {
@@ -57,33 +58,29 @@ const LoginCard = () => {
 	// Handle loading - Spinner
 	if (isLoading) return 'Loading..';
 
-	
 	return (
 		<div className='login-card'>
+			<img src={LoginSvg} alt='Login' className='login-card__image' />
 			<form className='login-card__form'>
-				<label className='login-card__label'>
-					Email:
-					<input
-						className='login-card__input'
-						type='email'
-						name='email'
-						value={email}
-						required
-						onChange={handleChange}
-					/>
-				</label>
+				<label className='login-card__label'>Email:</label>
+				<input
+					className='login-card__input'
+					type='email'
+					name='email'
+					value={email}
+					required
+					onChange={handleChange}
+				/>
 				<br />
-				<label className='login-card__label'>
-					Password:
-					<input
-						className='login-card__input'
-						type='password'
-						name='password'
-						value={password}
-						required
-						onChange={handleChange}
-					/>
-				</label>
+				<label className='login-card__label'>Password:</label>
+				<input
+					className='login-card__input'
+					type='password'
+					name='password'
+					value={password}
+					required
+					onChange={handleChange}
+				/>
 				<br />
 				<button
 					className='login-card__button'
