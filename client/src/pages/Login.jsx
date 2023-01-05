@@ -1,4 +1,4 @@
-import LoginCard from '@components/LoginCard';
+import LoginCard from '@components/Auth/LoginCard';
 import '@styles/scss/LoginPage.scss';
 
 function Login() {
