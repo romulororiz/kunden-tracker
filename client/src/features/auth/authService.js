@@ -1,6 +1,14 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import authService from './authService';
+import axios from 'axios';
 
-const initialState = {
-	user: {},
+const API_URL = '/api/users';
+
+// Register new user
+export const registerUser = async userData => {
+	const { data } = await axios.post(API_URL, userData);
+
+	if (data) {
+		localStorage.setItem('user', JSON.stringify(data));
+	}
+
+	return data;
 };
