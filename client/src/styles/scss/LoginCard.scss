@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables', 'breakpoints';
 
 .login-card {
 	display: flex;
@@ -9,6 +9,7 @@
 	border-radius: $base-border-radius;
 	box-shadow: $base-box-shadow;
 	margin: 0 2rem;
+	transition: $ease-2;
 
 	.login-card__img-wrapper {
 		width: 100%;
@@ -23,6 +24,7 @@
 			color: $primary-darker;
 			text-transform: uppercase;
 			font-weight: 400;
+			margin-bottom: -5px;
 		}
 
 		.login-card__image {
@@ -82,9 +84,23 @@
 
 	.login-card__register {
 		font-size: 14px;
+		text-align: center;
 
 		a {
 			color: $primary-darker;
+		}
+	}
+
+	@include sm {
+		width: 250px;
+		font-size: 12px;
+
+		.login-card__button {
+			font-size: 12px !important;
+		}
+
+		.login-card__title {
+			margin-bottom: -10px !important;
 		}
 	}
 }

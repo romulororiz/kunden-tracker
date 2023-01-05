@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { reset, registerUser } from '@features/auth/authSlice';
 import RegisterSvg from '@assets/svgs/register.svg';
 import '@styles/scss/RegisterCard.scss';
+// import { useNotificationContext } from '@hooks/useNotificationContext';
 
 const RegisterCard = () => {
 	const [formData, setFormData] = useState({
@@ -20,6 +21,10 @@ const RegisterCard = () => {
 	const { user, isError, isLoading, isSuccess, message } = useSelector(
 		state => state.auth
 	);
+
+	// // Get state from context to handle input errors
+	// const { errorMessage, hasError, updateMessage, updateHasError } =
+	// 	useNotificationContext();
 
 	// Initialize dispatch and navigate
 	const dispatch = useDispatch();
