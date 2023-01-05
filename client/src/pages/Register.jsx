@@ -10,6 +10,7 @@ function Register() {
 		email: '',
 		password: '',
 	});
+
 	const { firstName, lastName, email, password } = formData;
 
 	// Get data from store
@@ -23,17 +24,17 @@ function Register() {
 
 	useEffect(() => {
 		if (isError) {
-			alert('error');
+			alert(message);
 		}
 
 		// Redirect on success
-		if (isSuccess || isError || user) {
+		if (isSuccess || user) {
 			dispatch(reset());
 			navigate('/');
 		}
 
 		dispatch(reset());
-	}, []);
+	}, [dispatch, user, isError, isLoading, isSuccess, message, navigate]);
 
 	const handleChange = event => {
 		const { name, value } = event.target;
@@ -45,6 +46,7 @@ function Register() {
 
 	const handleSubmit = event => {
 		event.preventDefault();
+
 		// submit form data to server
 		const userData = {
 			firstName,
@@ -62,6 +64,9 @@ function Register() {
 			password: '',
 		});
 	};
+
+	// Handle loading - Spinner
+	if (isLoading) return 'Loading..';
 
 	return (
 		<form onSubmit={handleSubmit}>
