@@ -52,6 +52,7 @@ const LoginCard = () => {
 			password,
 		};
 
+		// dispatch login action from store
 		dispatch(loginUser(userData));
 	};
 
@@ -60,9 +61,12 @@ const LoginCard = () => {
 
 	return (
 		<div className='login-card'>
-			<img src={LoginSvg} alt='Login' className='login-card__image' />
+			<div className='login-card__img-wrapper'>
+				<img src={LoginSvg} alt='Login' className='login-card__image' />
+				<h2 className='login-card__title'>Login</h2>
+			</div>
 			<form className='login-card__form'>
-				<label className='login-card__label'>Email:</label>
+				<label className='login-card__label'>Email</label>
 				<input
 					className='login-card__input'
 					type='email'
@@ -72,7 +76,7 @@ const LoginCard = () => {
 					onChange={handleChange}
 				/>
 				<br />
-				<label className='login-card__label'>Password:</label>
+				<label className='login-card__label'>Password</label>
 				<input
 					className='login-card__input'
 					type='password'

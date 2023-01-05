@@ -7,7 +7,8 @@ $info: #f6c31c;
 $light-gray: #6e6e6e;
 
 // transition
-$ease-2: ease 0.2s all;
+$ease-1: 0.1s ease-in-out;
+$ease-2: 0.2s ease-in-out;
 
 // spacing
 $base-padding: 0.75rem;
@@ -18,7 +19,7 @@ $base-border-thickness: 1px;
 $base-border-radius: 12px;
 
 // box-shadow
-$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+$base-box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.15);
 
 // font-sizes
 $base-font-size: 1rem;
