@@ -41,8 +41,9 @@ const clientSchema = mongoose.Schema(
 		},
 		workingHours: [
 			{
-				day: { type: Date },
-				period: [{ start: { type: Date }, end: { type: Date } }],
+				day: { type: Date, required: true },
+				startTime: { type: Date, required: true },
+				endTime: { type: Date, required: true },
 			},
 		],
 	},
