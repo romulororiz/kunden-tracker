@@ -54,7 +54,7 @@
 		background-color: $primary;
 		color: #fff;
 		font-size: 16px;
-		margin-top: 15px;
+		margin-top: 5px;
 		margin-bottom: 25px;
 		transition: $ease-2;
 		cursor: pointer;
@@ -62,5 +62,13 @@
 
 	.login-card__button:hover {
 		background-color: $primary-darker;
+	}
+
+	.login-card__register {
+		font-size: 14px;
+
+		a {
+			color: $primary-darker;
+		}
 	}
 }
