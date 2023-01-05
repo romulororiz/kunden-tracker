@@ -53,3 +53,30 @@ export const deleteClient = async (clientId, token) => {
 
 	return data;
 };
+
+// Update client
+export const updateClient = async (clientId, clientData, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const { data } = await axios.put(
+		`${API_URL}/${clientId}`,
+		clientData,
+		config
+	);
+
+	return data;
+};
+
+const clientService = {
+	addClient,
+	getClients,
+	getSingleClient,
+	deleteClient,
+	updateClient,
+};
+
+export default clientService;

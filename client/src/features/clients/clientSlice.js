@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import clientsService from './clientService';
+import clientService from './clientService';
 
 const initialState = {
 	clients: [],
@@ -16,7 +16,7 @@ export const addClient = createAsyncThunk(
 	async (clientData, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
-			return await clientsService.addClient(clientData, token);
+			return await clientService.addClient(clientData, token);
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -35,7 +35,7 @@ export const getClients = createAsyncThunk(
 	async (_, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
-			return await clientsService.addClient(token);
+			return await clientService.getClients(token);
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -54,7 +54,26 @@ export const getSingleClient = createAsyncThunk(
 	async (clientId, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
-			return await clientsService.addClient(clientId, token);
+			return await clientService.getSingleClient(clientId, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+// Update a client
+export const updateClient = createAsyncThunk(
+	'client/updateClient',
+	async (clientId, clientData, thunkAPI) => {
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			return await clientService.updateClient(clientId, clientData, token);
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -73,7 +92,7 @@ export const deleteClient = createAsyncThunk(
 	async (clientId, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
-			return await clientsService.addClient(clientId, token);
+			return await clientService.deleteClient(clientId, token);
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -92,8 +111,48 @@ export const clientSlice = createSlice({
 	reducers: {
 		reset: state => initialState,
 	},
-	extraReducers: builder => {},
+	extraReducers: builder => {
+		builder
+			.addCase(addClient.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(addClient.fulfilled, state => {
+				state.isLoading = false;
+				state.isSuccess = true;
+			})
+			.addCase(addClient.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(getClients.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(getClients.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.tickets = action.payload;
+			})
+			.addCase(getClients.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(getSingleClient.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(getSingleClient.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.ticket = action.payload;
+			})
+			.addCase(getSingleClient.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			});
+	},
 });
 
-// export const { reset } = productSlice.actions;
-// export default productSlice.reducer;
+export const { reset } = clientSlice.actions;
+export default clientSlice.reducer;
