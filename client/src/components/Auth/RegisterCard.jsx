@@ -5,6 +5,7 @@ import { reset, registerUser } from '@features/auth/authSlice';
 import RegisterSvg from '@assets/svgs/register.svg';
 import '@styles/scss/RegisterCard.scss';
 import { toast } from 'react-toastify';
+import Spinner from '../Spinner';
 // import { useNotificationContext } from '@hooks/useNotificationContext';
 
 const RegisterCard = () => {
@@ -58,7 +59,7 @@ const RegisterCard = () => {
 
 		// Check if passwords match
 		if (password !== password2) {
-			alert('Passwords do not match');
+			toast.error('Passwords do not match');
 		} else {
 			// submit form data to server
 			const userData = {
@@ -83,7 +84,7 @@ const RegisterCard = () => {
 	};
 
 	// Handle loading - Spinner
-	if (isLoading) return 'Loading..';
+	if (isLoading) return <Spinner />;
 
 	return (
 		<div className='register-card'>

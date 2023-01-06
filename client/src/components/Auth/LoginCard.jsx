@@ -5,6 +5,7 @@ import { reset, loginUser } from '@features/auth/authSlice';
 import LoginSvg from '@assets/svgs/login.svg';
 import '@styles/scss/LoginCard.scss';
 import { toast } from 'react-toastify';
+import Spinner from '../Spinner';
 
 const LoginCard = () => {
 	const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ const LoginCard = () => {
 	};
 
 	// Handle loading - Spinner
-	if (isLoading) return 'Loading..';
+	if (isLoading) return <Spinner />;
 
 	return (
 		<div className='login-card'>
