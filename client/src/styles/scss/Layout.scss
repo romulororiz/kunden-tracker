@@ -1,7 +1,20 @@
-.layout {
-	display: flex;
+@import 'breakpoints';
+
+.main__container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 60px;
+
+	.main {
+		width: calc(100% - 200px);
+		margin-left: 200px;
+		margin-top: 100px;
+	}
 }
 
-.main {
-	margin-left: 500px;
+@include md {
+	.main {
+		width: calc(100% - 100px) !important;
+		margin-left: 100px !important;
+	}
 }

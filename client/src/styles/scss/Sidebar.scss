@@ -19,7 +19,11 @@
 	}
 
 	.sidebar__logo-text {
+		width: 55px;
+		height: 55px;
 		color: $primary-darker;
+		border: 2px solid $primary-darker;
+		border-radius: 30px;
 	}
 
 	.sidebar__section {
@@ -39,9 +43,9 @@
 		align-items: center;
 		font-size: $font-size-md;
 		color: $primary;
-		padding: 5px 0;
+		padding: 8px 0;
 		transition: $ease-1;
-		border-radius: 8px;
+		border-radius: 12px;
 
 		&:hover {
 			background-color: $primary-darker;
@@ -55,6 +59,15 @@
 			margin-left: 8px;
 			font-size: 18px;
 		}
+	}
+
+	.sidebar__link-active {
+		background-color: $primary-darker;
+		color: #fff;
+	}
+
+	.sidebar__section-logout {
+		margin-top: 65px;
 	}
 }
 
