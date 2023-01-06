@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables', 'breakpoints';
 
 .sidebar {
 	position: fixed;
@@ -18,6 +18,10 @@
 		margin: 50px 0;
 	}
 
+	.sidebar__logo-text {
+		color: $primary-darker;
+	}
+
 	.sidebar__section {
 		margin-bottom: 20px;
 	}
@@ -35,7 +39,6 @@
 		align-items: center;
 		font-size: $font-size-md;
 		color: $primary;
-		text-decoration: none;
 		padding: 5px 0;
 		transition: $ease-1;
 		border-radius: 8px;
@@ -51,6 +54,27 @@
 			margin-right: 8px;
 			margin-left: 8px;
 			font-size: 18px;
+		}
+	}
+}
+
+@include md {
+	.sidebar {
+		width: 100px;
+	}
+
+	.sidebar__link {
+		margin: 0 auto;
+		padding: 5px !important;
+		width: 60%;
+
+		.sidebar__link-text {
+			display: none;
+		}
+
+		.sidebar__link-icon {
+			font-size: 22px !important;
+			margin: 0 auto !important;
 		}
 	}
 }
