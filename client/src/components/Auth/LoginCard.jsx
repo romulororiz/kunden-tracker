@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { reset, loginUser } from '@features/auth/authSlice';
 import LoginSvg from '@assets/svgs/login.svg';
 import '@styles/scss/LoginCard.scss';
+import { toast } from 'react-toastify';
 
 const LoginCard = () => {
 	const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const LoginCard = () => {
 
 	useEffect(() => {
 		if (isError) {
-			alert(message);
+			toast.error(message);
 		}
 
 		if (isSuccess || user) {
@@ -33,7 +34,7 @@ const LoginCard = () => {
 		}
 
 		dispatch(reset());
-	}, [dispatch, isError, isSuccess, message, navigate, user]);
+	}, [dispatch, isError, isSuccess, message, navigate, user, isLoading]);
 
 	const handleChange = event => {
 		const { name, value } = event.target;

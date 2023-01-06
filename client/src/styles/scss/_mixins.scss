@@ -1,0 +1,13 @@
+@import 'variables';
+
+@mixin authCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 350px;
+	padding: 20px;
+	border-radius: $base-border-radius;
+	box-shadow: $base-box-shadow;
+	margin: 0 2rem;
+	transition: $ease-2;
+}

@@ -1,15 +1,7 @@
-@import 'variables', 'breakpoints';
+@import 'variables', 'breakpoints', 'mixins';
 
 .login-card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 350px;
-	padding: 20px;
-	border-radius: $base-border-radius;
-	box-shadow: $base-box-shadow;
-	margin: 0 2rem;
-	transition: $ease-2;
+	@include authCard;
 
 	.login-card__img-wrapper {
 		width: 100%;

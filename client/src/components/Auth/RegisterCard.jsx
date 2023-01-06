@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { reset, registerUser } from '@features/auth/authSlice';
 import RegisterSvg from '@assets/svgs/register.svg';
 import '@styles/scss/RegisterCard.scss';
+import { toast } from 'react-toastify';
 // import { useNotificationContext } from '@hooks/useNotificationContext';
 
 const RegisterCard = () => {
@@ -32,7 +33,7 @@ const RegisterCard = () => {
 
 	useEffect(() => {
 		if (isError) {
-			alert(message);
+			toast.error(message);
 		}
 
 		// Redirect on success
@@ -42,7 +43,7 @@ const RegisterCard = () => {
 		}
 
 		dispatch(reset());
-	}, [dispatch, user, isError, isSuccess, message, navigate]);
+	}, [dispatch, user, isError, isSuccess, message, navigate, isLoading]);
 
 	const handleChange = event => {
 		const { name, value } = event.target;
