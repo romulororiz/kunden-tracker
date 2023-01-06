@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logout } from '@features/auth/authSlice';
 import { TiHomeOutline } from 'react-icons/ti';
 import { HiOutlineUsers } from 'react-icons/hi';
@@ -16,13 +16,19 @@ const Sidebar = () => {
 	// Get window size
 	const windowSize = useWindowSize();
 
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	// check for current path
+	const isActive = path => {
+		return location.pathname === path;
+	};
+
 	// set current screen size
 	useEffect(() => {
 		setWindowDimension(windowSize.width);
 	}, [windowDimension, windowSize.width]);
-
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	// logout user
 	const submitHandler = () => {
@@ -30,6 +36,14 @@ const Sidebar = () => {
 		navigate('/login');
 	};
 
+	// Prevent reloading
+	const onClickHandler = (e, path) => {
+		e.preventDefault();
+
+		if (location.pathname !== path) {
+			navigate(path);
+		}
+	};
 	return (
 		<aside className='sidebar'>
 			{windowDimension <= 720 ? (
@@ -41,38 +55,51 @@ const Sidebar = () => {
 			)}
 			<div className='sidebar__section'>
 				<div className='sidebar__section-title'>Analytics</div>
-				<a href='/#' className='sidebar__link'>
+				<Link
+					to='/dashboard'
+					onClick={e => onClickHandler(e, '/dashboard')}
+					className={`sidebar__link ${
+						isActive('/dashboard') ? 'sidebar__link-active' : ''
+					}`}
+				>
 					<TiHomeOutline className='sidebar__link-icon' />
 					<span className='sidebar__link-text'>Dashboard</span>
-				</a>
+				</Link>
 			</div>
 			<div className='sidebar__section'>
 				<div className='sidebar__section-title'>Content</div>
-				<a href='/#' className='sidebar__link'>
+				<Link
+					to='/clients'
+					onClick={e => onClickHandler(e, '/clients')}
+					className={`sidebar__link ${
+						isActive('/clients') ? 'sidebar__link-active' : ''
+					}`}
+				>
 					<HiOutlineUsers className='sidebar__link-icon' />
 					<span className='sidebar__link-text'>Clients</span>
-				</a>
+				</Link>
 			</div>
 			<div className='sidebar__section'>
 				<div className='sidebar__section-title'>
 					{windowDimension <= 720 ? 'Custom.' : 'Customization'}
 				</div>
-				<a href='/#' className='sidebar__link'>
+				<Link
+					to='/theme'
+					onClick={e => onClickHandler(e, '/theme')}
+					className={`sidebar__link ${
+						isActive('/theme') ? 'sidebar__link-active' : ''
+					}`}
+				>
 					<RiMarkupLine className='sidebar__link-icon' />
 					<span className='sidebar__link-text'>Theme</span>
-				</a>
+				</Link>
 			</div>
 			<div className='sidebar__section sidebar__section-logout'>
 				<div className='sidebar__section-title'>Logout</div>
-				<a
-					href='/#'
-					className='sidebar__link'
-					type='submit'
-					onClick={submitHandler}
-				>
+				<Link className='sidebar__link' type='submit' onClick={submitHandler}>
 					<BiLogOut className='sidebar__link-icon' />
 					<span className='sidebar__link-text'>Logout</span>
-				</a>
+				</Link>
 			</div>
 		</aside>
 	);
