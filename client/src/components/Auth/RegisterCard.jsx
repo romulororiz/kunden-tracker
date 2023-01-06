@@ -40,7 +40,7 @@ const RegisterCard = () => {
 		// Redirect on success
 		if (isSuccess || user) {
 			dispatch(reset());
-			navigate('/');
+			navigate('/dashboard');
 		}
 
 		dispatch(reset());

@@ -31,7 +31,7 @@ const LoginCard = () => {
 
 		if (isSuccess || user) {
 			dispatch(reset());
-			navigate('/');
+			navigate('/dashboard');
 		}
 
 		dispatch(reset());
