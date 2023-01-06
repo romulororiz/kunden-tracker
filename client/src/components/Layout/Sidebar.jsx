@@ -36,14 +36,6 @@ const Sidebar = () => {
 		navigate('/login');
 	};
 
-	// Prevent reloading
-	const onClickHandler = (e, path) => {
-		e.preventDefault();
-
-		if (location.pathname !== path) {
-			navigate(path);
-		}
-	};
 	return (
 		<aside className='sidebar'>
 			{windowDimension <= 720 ? (
@@ -57,7 +49,6 @@ const Sidebar = () => {
 				<div className='sidebar__section-title'>Analytics</div>
 				<Link
 					to='/dashboard'
-					onClick={e => onClickHandler(e, '/dashboard')}
 					className={`sidebar__link ${
 						isActive('/dashboard') ? 'sidebar__link-active' : ''
 					}`}
@@ -70,7 +61,6 @@ const Sidebar = () => {
 				<div className='sidebar__section-title'>Content</div>
 				<Link
 					to='/clients'
-					onClick={e => onClickHandler(e, '/clients')}
 					className={`sidebar__link ${
 						isActive('/clients') ? 'sidebar__link-active' : ''
 					}`}
@@ -85,7 +75,6 @@ const Sidebar = () => {
 				</div>
 				<Link
 					to='/theme'
-					onClick={e => onClickHandler(e, '/theme')}
 					className={`sidebar__link ${
 						isActive('/theme') ? 'sidebar__link-active' : ''
 					}`}

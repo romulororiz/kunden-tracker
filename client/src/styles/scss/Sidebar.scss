@@ -34,15 +34,16 @@
 		font-size: 0.75rem;
 		margin-bottom: 10px;
 		text-transform: uppercase;
-		color: rgba($light-gray, 0.75);
-		font-weight: 500;
+		color: rgba(0, 0, 0, 0.75);
+		font-weight: 600;
+
 	}
 
 	.sidebar__link {
 		display: flex;
 		align-items: center;
-		font-size: $font-size-md;
-		color: $primary;
+		font-size: $font-size-sm;
+		color: $primary-darker;
 		padding: 8px 0;
 		transition: $ease-1;
 		border-radius: 12px;
@@ -62,7 +63,7 @@
 	}
 
 	.sidebar__link-active {
-		background-color: $primary-darker;
+		background-color: $primary;
 		color: #fff;
 	}
 
