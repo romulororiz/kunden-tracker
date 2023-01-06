@@ -6,6 +6,51 @@
 	left: 0;
 	bottom: 0;
 	width: 200px;
-	background-color: $primary;
+	padding: 0 20px;
+	background-color: #fff;
 	box-shadow: $base-box-shadow;
+	font-family: Poppins, sans-serif;
+
+	.sidebar__logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 50px 0;
+	}
+
+	.sidebar__section {
+		margin-bottom: 20px;
+	}
+
+	.sidebar__section-title {
+		font-size: 0.75rem;
+		margin-bottom: 10px;
+		text-transform: uppercase;
+		color: rgba($light-gray, 0.75);
+		font-weight: 500;
+	}
+
+	.sidebar__link {
+		display: flex;
+		align-items: center;
+		font-size: $font-size-md;
+		color: $primary;
+		text-decoration: none;
+		padding: 5px 0;
+		transition: $ease-1;
+		border-radius: 8px;
+
+		&:hover {
+			background-color: $primary-darker;
+			color: #fff;
+		}
+
+		.sidebar__link-icon {
+			position: relative;
+			top: -1px;
+			margin-right: 8px;
+			margin-left: 8px;
+			font-size: 18px;
+		}
+	}
 }

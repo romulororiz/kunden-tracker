@@ -1,10 +1,12 @@
 // theme colors
-$primary: #43abf0;
-$primary-darker: #368ec8;
-$secondary: #1ac886;
+$primary: #32a2ec;
+$primary-darker: #2a8ed0;
+$secondary: #2754e8;
+$secondary-darker: #1f44bd;
 $error: #d32752;
 $info: #f6c31c;
-$light-gray: #6e6e6e;
+$light-gray: #8a8a8a;
+$dark-gray: #6e6e6e;
 
 // transition
 $ease-1: 0.1s ease-in-out;
@@ -24,6 +26,7 @@ $base-box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.15);
 // font-sizes
 $base-font-size: 1rem;
 $font-size-sm: $base-font-size * 0.75;
+$font-size-md: $base-font-size * 0.95;
 $font-size-lg: $base-font-size * 1.5;
 $font-size-xl: $base-font-size * 2;
 $font-size-xxl: $base-font-size * 3;
