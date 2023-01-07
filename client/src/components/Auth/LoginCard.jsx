@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { reset, loginUser } from '@features/auth/authSlice';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginSvg from '@assets/svgs/login.svg';
 import '@styles/scss/LoginCard.scss';
 import { toast } from 'react-toastify';
 import Spinner from '../Spinner';
+import { useUserLoginMutation } from '@features/auth/authApi';
+import { loginUser } from '@features/auth/authSlice';
 
 const LoginCard = () => {
 	const [formData, setFormData] = useState({
@@ -15,27 +16,26 @@ const LoginCard = () => {
 
 	const { email, password } = formData;
 
-	// Get data from store
-	const { user, isError, isLoading, isSuccess, message } = useSelector(
-		state => state.auth
-	);
+	// Get login mutation
+	const [userLogin, { data, isSuccess, isError, error, isLoading }] =
+		useUserLoginMutation();
 
 	// Initialize dispatch and navigate
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	// isError and isSuccess are responses from the login mutation
+	// I can access the message field thats coming from the backend
 	useEffect(() => {
 		if (isError) {
-			toast.error(message);
+			toast.error(error.data.message);
 		}
 
-		if (isSuccess || user) {
-			dispatch(reset());
+		if (isSuccess) {
+			dispatch(loginUser(data));
 			navigate('/dashboard');
 		}
-
-		dispatch(reset());
-	}, [dispatch, isError, isSuccess, message, navigate, user, isLoading]);
+	}, [data, dispatch, error, isError, isSuccess, navigate, isLoading]);
 
 	const handleChange = event => {
 		const { name, value } = event.target;
@@ -45,7 +45,7 @@ const LoginCard = () => {
 		}));
 	};
 
-	const handleSubmit = event => {
+	const handleSubmit = async event => {
 		event.preventDefault();
 
 		// submit form data to server
@@ -55,7 +55,7 @@ const LoginCard = () => {
 		};
 
 		// dispatch login action from store
-		dispatch(loginUser(userData));
+		await userLogin(userData);
 	};
 
 	// Handle loading - Spinner
@@ -81,7 +81,7 @@ const LoginCard = () => {
 				<label className='login-card__label'>Password</label>
 				<input
 					className='login-card__input'
-					type='password'
+					type='passwo rd'
 					name='password'
 					value={password}
 					required
@@ -97,7 +97,7 @@ const LoginCard = () => {
 				</button>
 			</form>
 			<span className='login-card__register'>
-				Don't have an account? <a href='/register'>Register</a>
+				Don't have an account? <Link to='/register'>Register</Link>
 			</span>
 		</div>
 	);

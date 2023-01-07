@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = '/api/clients';
 
-// Add new client
 export const addClient = async (clientData, token) => {
 	const config = {
 		headers: {
@@ -15,7 +14,6 @@ export const addClient = async (clientData, token) => {
 	return data;
 };
 
-// Get all clients
 export const getClients = async token => {
 	const config = {
 		headers: {
@@ -28,7 +26,6 @@ export const getClients = async token => {
 	return data;
 };
 
-// Get single client
 export const getSingleClient = async (clientId, token) => {
 	const config = {
 		headers: {
@@ -41,7 +38,6 @@ export const getSingleClient = async (clientId, token) => {
 	return data;
 };
 
-// Delete Client
 export const deleteClient = async (clientId, token) => {
 	const config = {
 		headers: {
@@ -54,7 +50,6 @@ export const deleteClient = async (clientId, token) => {
 	return data;
 };
 
-// Update client
 export const updateClient = async (clientId, clientData, token) => {
 	const config = {
 		headers: {

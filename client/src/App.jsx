@@ -13,8 +13,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@styles/scss/Layout.scss';
 import SidebarLayout from './components/SidebarLayout';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+	const user = useSelector(state => state.auth.user);
+
 	return (
 		<>
 			<Router>
@@ -34,8 +37,15 @@ const App = () => {
 							<Route path='/clients' element={<Clients />} />
 						</Route>
 					</Route>
-					<Route path='/login' element={<Login />} />
-					<Route path='/register' element={<Register />} />
+
+					<Route
+						path='/login'
+						element={user ? <Navigate to='/dashboard' /> : <Login />}
+					/>
+					<Route
+						path='/register'
+						element={user ? <Navigate to='/dashboard' /> : <Register />}
+					/>
 				</Routes>
 			</Router>
 			<ToastContainer />

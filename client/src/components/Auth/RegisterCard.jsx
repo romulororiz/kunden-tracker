@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { reset, registerUser } from '@features/auth/authSlice';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { registerUser } from '@features/auth/authSlice';
 import RegisterSvg from '@assets/svgs/register.svg';
 import '@styles/scss/RegisterCard.scss';
 import { toast } from 'react-toastify';
 import Spinner from '../Spinner';
-// import { useNotificationContext } from '@hooks/useNotificationContext';
+import { useUserRegisterMutation } from '@features/auth/authApi';
 
 const RegisterCard = () => {
 	const [formData, setFormData] = useState({
@@ -20,13 +20,8 @@ const RegisterCard = () => {
 	const { firstName, lastName, email, password, password2 } = formData;
 
 	// Get data from store
-	const { user, isError, isLoading, isSuccess, message } = useSelector(
-		state => state.auth
-	);
-
-	// // Get state from context to handle input errors
-	// const { errorMessage, hasError, updateMessage, updateHasError } =
-	// 	useNotificationContext();
+	const [userRegister, { data, isSuccess, isError, error, isLoading }] =
+		useUserRegisterMutation();
 
 	// Initialize dispatch and navigate
 	const dispatch = useDispatch();
@@ -34,17 +29,15 @@ const RegisterCard = () => {
 
 	useEffect(() => {
 		if (isError) {
-			toast.error(message);
+			toast.error(error.data.message);
 		}
 
 		// Redirect on success
-		if (isSuccess || user) {
-			dispatch(reset());
+		if (isSuccess) {
+			dispatch(registerUser(data));
 			navigate('/dashboard');
 		}
-
-		dispatch(reset());
-	}, [dispatch, user, isError, isSuccess, message, navigate, isLoading]);
+	}, [dispatch, isError, isSuccess, navigate, isLoading, error, data]);
 
 	const handleChange = event => {
 		const { name, value } = event.target;
@@ -54,7 +47,7 @@ const RegisterCard = () => {
 		}));
 	};
 
-	const handleSubmit = event => {
+	const handleSubmit = async event => {
 		event.preventDefault();
 
 		// Check if passwords match
@@ -70,7 +63,7 @@ const RegisterCard = () => {
 			};
 
 			// dispatch register action from store
-			dispatch(registerUser(userData));
+			await userRegister(userData);
 
 			// clear form
 			setFormData({
@@ -164,7 +157,7 @@ const RegisterCard = () => {
 				</button>
 			</form>
 			<span className='register-card_sign-in'>
-				Already have an account? <a href='/login'>Sign in</a>
+				Already have an account? <Link to='/login'>Sign in</Link>
 			</span>
 		</div>
 	);

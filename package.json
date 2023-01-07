@@ -23,7 +23,8 @@
 		"express-async-handler": "^1.2.0",
 		"express-session": "^1.17.3",
 		"jsonwebtoken": "^9.0.0",
-		"mongoose": "^6.8.2"
+		"mongoose": "^6.8.2",
+		"react-query": "^3.39.2"
 	},
 	"devDependencies": {
 		"concurrently": "^7.6.0",

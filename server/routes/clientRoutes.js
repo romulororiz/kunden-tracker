@@ -7,9 +7,14 @@ const {
 	getClient,
 	deleteClient,
 	updateClient,
+	filteredClients,
 } = require('../controllers/clientController');
 
-router.route('/').get(protectRoute, getClients).post(protectRoute, addClient);
+router
+	.route('/')
+	.get(protectRoute, getClients)
+	.post(protectRoute, addClient)
+	.get(protectRoute, filteredClients);
 
 router
 	.route('/:id')
