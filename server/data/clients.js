@@ -1,6 +1,8 @@
-export const clients = [
+const clients = [
 	{
-		name: 'John Smith',
+		user: '63b741dde38b6436490ffedb',
+		firstName: 'John',
+		lastName: 'Smith',
 		address: {
 			city: 'New York',
 			street: '123 Main St',
@@ -26,11 +28,13 @@ export const clients = [
 		],
 	},
 	{
-		name: 'Jane Doe',
+		user: '63b741dde38b6436490ffedb',
+		firstName: 'Jane',
+		lastName: 'Doe',
 		address: {
 			city: 'Los Angeles',
 			street: '456 Market St',
-			houseNumber: '',
+			houseNumber: '1',
 			postalCode: '90001',
 		},
 		workingHours: [
@@ -52,11 +56,14 @@ export const clients = [
 		],
 	},
 	{
-		name: 'Bob Johnson',
+		user: '63b741dde38b6436490ffedb',
+
+		firstName: 'Bob',
+		lastName: 'Johnson',
 		address: {
 			city: 'Chicago',
 			street: '789 Elm St',
-			houseNumber: '',
+			houseNumber: '2',
 			postalCode: '60601',
 		},
 		workingHours: [
@@ -78,11 +85,14 @@ export const clients = [
 		],
 	},
 	{
-		name: 'Emily Williams',
+		user: '63b741dde38b6436490ffedb',
+
+		firstName: 'Emily',
+		lastName: 'Williams',
 		address: {
 			city: 'Houston',
 			street: '321 Pine St',
-			houseNumber: '',
+			houseNumber: '3',
 			postalCode: '77001',
 		},
 		workingHours: [
@@ -104,11 +114,14 @@ export const clients = [
 		],
 	},
 	{
-		name: 'James Smith',
+		user: '63b741dde38b6436490ffedb',
+
+		firstName: 'James',
+		lastName: 'Smith',
 		address: {
 			city: 'Philadelphia',
 			street: '654 Maple St',
-			houseNumber: '',
+			houseNumber: '3',
 			postalCode: '19101',
 		},
 		workingHours: [
@@ -130,3 +143,5 @@ export const clients = [
 		],
 	},
 ];
+
+module.exports = clients;
