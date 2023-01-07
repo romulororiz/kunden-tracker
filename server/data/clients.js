@@ -28,7 +28,7 @@ const clients = [
 		],
 	},
 	{
-		user: '63b741dde38b6436490ffedb',
+		user: '63b70b1e0853942061c76a65',
 		firstName: 'Jane',
 		lastName: 'Doe',
 		address: {
@@ -85,7 +85,7 @@ const clients = [
 		],
 	},
 	{
-		user: '63b741dde38b6436490ffedb',
+		user: '63b70b1e0853942061c76a65',
 
 		firstName: 'Emily',
 		lastName: 'Williams',
@@ -123,6 +123,34 @@ const clients = [
 			street: '654 Maple St',
 			houseNumber: '3',
 			postalCode: '19101',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b70b1e0853942061c76a65',
+		firstName: 'John',
+		lastName: 'Smith',
+		address: {
+			city: 'New York',
+			street: '123 Main St',
+			houseNumber: 'Apt 3',
+			postalCode: '10001',
 		},
 		workingHours: [
 			{

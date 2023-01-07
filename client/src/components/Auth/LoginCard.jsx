@@ -81,7 +81,7 @@ const LoginCard = () => {
 				<label className='login-card__label'>Password</label>
 				<input
 					className='login-card__input'
-					type='passwo rd'
+					type='password'
 					name='password'
 					value={password}
 					required

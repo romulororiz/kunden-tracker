@@ -1,14 +1,14 @@
 @import 'breakpoints';
 
 .main__container {
-	max-width: 1200px;
+	max-width: 1500px;
 	margin: 0 auto;
 	padding: 0 60px;
 
 	.main {
 		width: calc(100% - 200px);
 		margin-left: 200px;
-		margin-top: 100px;
+		padding-top: 150px;
 	}
 }
 

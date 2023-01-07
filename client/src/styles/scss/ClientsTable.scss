@@ -1,0 +1,36 @@
+@import 'variables';
+
+table {
+	background-color: #fff;
+	border-spacing: 0;
+	box-shadow: $base-box-shadow;
+	color: $primary-darker;
+	border-collapse: collapse;
+	font-size: $font-size-md;
+	border-radius: 5px;
+
+	th {
+		border-bottom: 1px solid #f3f5f7;
+		border-right: 1px solid #f3f5f7;
+		font-weight: 500;
+	}
+
+	td {
+		color: $light-gray;
+	}
+
+	tr:nth-child(even) {
+		background-color: #f3f5f7;
+	}
+
+	th,
+	td {
+		margin: 0;
+		padding: 20px 15px;
+		text-align: center;
+
+		&:last-child {
+			border-right: 0;
+		}
+	}
+}
