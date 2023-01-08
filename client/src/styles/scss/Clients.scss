@@ -1,0 +1,31 @@
+@import 'variables', 'mixins';
+
+.clients {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.client__filter {
+		align-self: flex-end;
+		width: 150px;
+		margin-bottom: 10px;
+		font-size: $font-size-md;
+		border: 1px solid #f3f5f7;
+		padding: 6px 12px;
+		border-radius: 5px;
+		outline: none;
+
+		&::placeholder {
+			color: lighten($color: $light-gray, $amount: 20%);
+		}
+
+		&:focus {
+			border: 1px solid #dfe1e3;
+		}
+	}
+
+	.clients__message {
+		@include clientMessage;
+	}
+}

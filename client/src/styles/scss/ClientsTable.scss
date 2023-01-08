@@ -1,6 +1,7 @@
-@import 'variables';
+@import 'variables', 'mixins';
 
 table {
+	width: 100%;
 	background-color: #fff;
 	border-spacing: 0;
 	box-shadow: $base-box-shadow;
@@ -26,11 +27,19 @@ table {
 	th,
 	td {
 		margin: 0;
-		padding: 20px 15px;
+		padding: 20px 25px;
 		text-align: center;
 
 		&:last-child {
 			border-right: 0;
 		}
+
+		li {
+			text-align: left;
+		}
+	}
+
+	.clients__message {
+		@include clientMessage;
 	}
 }

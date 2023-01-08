@@ -57,6 +57,34 @@ const clients = [
 	},
 	{
 		user: '63b741dde38b6436490ffedb',
+		firstName: 'John',
+		lastName: 'Smith',
+		address: {
+			city: 'New York',
+			street: '123 Main St',
+			houseNumber: 'Apt 3',
+			postalCode: '10001',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b741dde38b6436490ffedb',
 
 		firstName: 'Bob',
 		lastName: 'Johnson',
@@ -116,6 +144,121 @@ const clients = [
 	{
 		user: '63b741dde38b6436490ffedb',
 
+		firstName: 'Bob',
+		lastName: 'Johnson',
+		address: {
+			city: 'Chicago',
+			street: '789 Elm St',
+			houseNumber: '2',
+			postalCode: '60601',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b741dde38b6436490ffedb',
+
+		firstName: 'Bob',
+		lastName: 'Johnson',
+		address: {
+			city: 'Chicago',
+			street: '789 Elm St',
+			houseNumber: '2',
+			postalCode: '60601',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b741dde38b6436490ffedb',
+		firstName: 'John',
+		lastName: 'Smith',
+		address: {
+			city: 'New York',
+			street: '123 Main St',
+			houseNumber: 'Apt 3',
+			postalCode: '10001',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b741dde38b6436490ffedb',
+
+		firstName: 'Bob',
+		lastName: 'Johnson',
+		address: {
+			city: 'Chicago',
+			street: '789 Elm St',
+			houseNumber: '2',
+			postalCode: '60601',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b741dde38b6436490ffedb',
+
 		firstName: 'James',
 		lastName: 'Smith',
 		address: {
@@ -123,6 +266,34 @@ const clients = [
 			street: '654 Maple St',
 			houseNumber: '3',
 			postalCode: '19101',
+		},
+		workingHours: [
+			{
+				day: new Date('2022-01-03'),
+				startTime: new Date('2022-01-03T09:00:00'),
+				endTime: new Date('2022-01-03T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-04'),
+				startTime: new Date('2022-01-04T09:00:00'),
+				endTime: new Date('2022-01-04T17:00:00'),
+			},
+			{
+				day: new Date('2022-01-05'),
+				startTime: new Date('2022-01-05T09:00:00'),
+				endTime: new Date('2022-01-05T17:00:00'),
+			},
+		],
+	},
+	{
+		user: '63b741dde38b6436490ffedb',
+		firstName: 'John',
+		lastName: 'Smith',
+		address: {
+			city: 'New York',
+			street: '123 Main St',
+			houseNumber: 'Apt 3',
+			postalCode: '10001',
 		},
 		workingHours: [
 			{

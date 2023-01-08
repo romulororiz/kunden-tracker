@@ -5,10 +5,19 @@
 	flex-direction: column;
 	align-items: center;
 	width: 350px;
-	padding: 20px;
+	padding: 35px 0;
 	border-radius: $base-border-radius;
 	box-shadow: $base-box-shadow;
 	margin: 0 2rem;
 	transition: $ease-2;
 	background-color: #fff;
+}
+
+@mixin clientMessage {
+	width: 100%;
+	font-size: $font-size-md;
+	text-align: left;
+	color: #f3f5f7;
+	background-color: $error;
+	padding: 10px 35px;
 }
