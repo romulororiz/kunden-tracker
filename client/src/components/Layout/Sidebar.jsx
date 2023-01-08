@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logout } from '@features/auth/authSlice';
-import { TiHomeOutline } from 'react-icons/ti';
-import { HiOutlineUsers } from 'react-icons/hi';
-import { RiMarkupLine } from 'react-icons/ri';
 import { BiLogOut } from 'react-icons/bi';
 import useWindowSize from '../../hooks/useWindowSize';
-import '@styles/scss/Sidebar.scss';
 import Logo from '@assets/svgs/logo.svg';
+import { sidebarLinks } from '../../config/data';
+import '@styles/scss/Sidebar.scss';
 
 const Sidebar = () => {
 	const [windowDimension, setWindowDimension] = useState(0);
@@ -45,44 +43,26 @@ const Sidebar = () => {
 					<img src={Logo} alt='Logo' className='sidebar__logo-image' />
 				</div>
 			)}
-			<div className='sidebar__section'>
-				<div className='sidebar__section-title'>Analytics</div>
-				<Link
-					to='/dashboard'
-					className={`sidebar__link ${
-						isActive('/dashboard') ? 'sidebar__link-active' : ''
-					}`}
-				>
-					<TiHomeOutline className='sidebar__link-icon' />
-					<span className='sidebar__link-text'>Dashboard</span>
-				</Link>
-			</div>
-			<div className='sidebar__section'>
-				<div className='sidebar__section-title'>Content</div>
-				<Link
-					to='/clients'
-					className={`sidebar__link ${
-						isActive('/clients') ? 'sidebar__link-active' : ''
-					}`}
-				>
-					<HiOutlineUsers className='sidebar__link-icon' />
-					<span className='sidebar__link-text'>Clients</span>
-				</Link>
-			</div>
-			<div className='sidebar__section'>
-				<div className='sidebar__section-title'>
-					{windowDimension <= 720 ? 'Custom.' : 'Customization'}
+
+			{sidebarLinks.map(({ linkTitle, link, linkText, Icon }) => (
+				<div className='sidebar__section'>
+					<div className='sidebar__section-title'>
+						{linkTitle === 'Customization' && windowDimension <= 720
+							? 'Custom.'
+							: linkTitle}
+					</div>
+					<Link
+						to={link}
+						className={`sidebar__link ${
+							isActive(link) ? 'sidebar__link-active' : ''
+						}`}
+					>
+						<Icon className='sidebar__link-icon' />
+						<span className='sidebar__link-text'>{linkText}</span>
+					</Link>
 				</div>
-				<Link
-					to='/theme'
-					className={`sidebar__link ${
-						isActive('/theme') ? 'sidebar__link-active' : ''
-					}`}
-				>
-					<RiMarkupLine className='sidebar__link-icon' />
-					<span className='sidebar__link-text'>Theme</span>
-				</Link>
-			</div>
+			))}
+
 			<div className='sidebar__section sidebar__section-logout'>
 				<div className='sidebar__section-title'>Logout</div>
 				<Link className='sidebar__link' type='submit' onClick={submitHandler}>

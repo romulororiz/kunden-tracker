@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getClients } from '../features/clients/clientSlice';
 import { useMemo } from 'react';
+import { toast } from 'react-toastify';
 import ClientsTable from './Layout/ClientsTable';
 import Spinner from '@components/Spinner';
 import '@styles/scss/ClientsTable.scss';
@@ -19,7 +20,7 @@ const Clients = () => {
 
 	console.log(clients);
 
-	// table keys
+	// table keys to get filtered by
 	const keys = ['name', 'address'];
 
 	// Filter on query
@@ -30,8 +31,12 @@ const Clients = () => {
 	};
 
 	useEffect(() => {
+		if (isError) {
+			toast.error(message);
+		}
+
 		dispatch(getClients());
-	}, [dispatch]);
+	}, [dispatch, isError, isSuccess, message]);
 
 	const columns = useMemo(
 		() => [
