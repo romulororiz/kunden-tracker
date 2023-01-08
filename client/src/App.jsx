@@ -11,8 +11,7 @@ import Login from '@pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '@styles/scss/Layout.scss';
-import SidebarLayout from './components/SidebarLayout';
+import Layout from './components/Layout/Layout';
 import { useSelector } from 'react-redux';
 
 const App = () => {
@@ -22,7 +21,7 @@ const App = () => {
 		<>
 			<Router>
 				<Routes>
-					<Route element={<SidebarLayout />}>
+					<Route element={<Layout />}>
 						<Route path='/' element={<PrivateRoute />}>
 							<Route
 								exact

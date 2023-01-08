@@ -43,3 +43,39 @@ table {
 		@include clientMessage;
 	}
 }
+
+.table__pagination-wrapper {
+	margin-top: 12px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	position: relative;
+
+	button {
+		background-color: #fff;
+		border: none;
+		padding: 3px 8px;
+		border-radius: 5px;
+		color: $primary-darker;
+		cursor: pointer;
+		transition: $ease-1;
+
+		&:disabled {
+			border: 1px solid #bec2c4;
+			background-color: #f0f4f7;
+			color: #bec2c4;
+			pointer-events: none;
+		}
+
+		&:hover {
+			background-color: $primary-darker;
+			color: $off-white-1;
+		}
+	}
+
+	.table__page-count {
+		position: absolute;
+		right: 0;
+		color: $light-gray;
+	}
+}

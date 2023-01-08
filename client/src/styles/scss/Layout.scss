@@ -1,14 +1,13 @@
-@import 'breakpoints';
+@import 'breakpoints', 'mixins';
 
 .main__container {
-	max-width: 1300px;
-	margin: 0 auto;
-	padding: 0 60px;
+	@include container;
+	padding: 0 2rem;
 
 	.main {
 		width: calc(100% - 200px);
 		margin-left: 200px;
-		padding-top: 150px;
+		margin-top: 60px;
 	}
 }
 

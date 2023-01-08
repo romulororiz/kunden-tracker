@@ -44,8 +44,8 @@ const Sidebar = () => {
 				</div>
 			)}
 
-			{sidebarLinks.map(({ linkTitle, link, linkText, Icon }) => (
-				<div className='sidebar__section'>
+			{sidebarLinks.map(({ linkTitle, link, linkText, Icon }, index) => (
+				<div key={index} className='sidebar__section'>
 					<div className='sidebar__section-title'>
 						{linkTitle === 'Customization' && windowDimension <= 720
 							? 'Custom.'

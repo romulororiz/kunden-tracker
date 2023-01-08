@@ -21,3 +21,8 @@
 	background-color: $error;
 	padding: 10px 35px;
 }
+
+@mixin container {
+	max-width: 1300px;
+	margin: 0 auto;
+}

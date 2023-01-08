@@ -13,6 +13,8 @@ const ClientsTable = ({ columns, data }) => {
 		gotoPage,
 		nextPage,
 		previousPage,
+		pageOptions,
+		state: { pageIndex },
 	} = useTable(
 		{
 			columns,
@@ -59,34 +61,30 @@ const ClientsTable = ({ columns, data }) => {
 							})}
 						</tbody>
 					</table>
-					<div className='pagination'>
-						<button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-							{'<<'}
-						</button>{' '}
-						<button onClick={() => previousPage()} disabled={!canPreviousPage}>
-							{'<'}
-						</button>{' '}
-						<button onClick={() => nextPage()} disabled={!canNextPage}>
-							{'>'}
-						</button>{' '}
-						<button
-							onClick={() => gotoPage(pageCount - 1)}
-							disabled={!canNextPage}
-						>
-							{'>>'}
-						</button>{' '}
-						{/* <select
-							value={pageSize}
-							onChange={e => {
-								setPageSize(Number(e.target.value));
-							}}
-						>
-							{[2, 20, 30, 40, 50].map(pageSize => (
-								<option key={pageSize} value={pageSize}>
-									Show {pageSize}
-								</option>
-							))}
-						</select> */}
+					<div className='table__pagination-wrapper'>
+						<div className='pagination'>
+							<button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+								{'<<'}
+							</button>{' '}
+							<button
+								onClick={() => previousPage()}
+								disabled={!canPreviousPage}
+							>
+								{'<'}
+							</button>{' '}
+							<button onClick={() => nextPage()} disabled={!canNextPage}>
+								{'>'}
+							</button>{' '}
+							<button
+								onClick={() => gotoPage(pageCount - 1)}
+								disabled={!canNextPage}
+							>
+								{'>>'}
+							</button>{' '}
+						</div>
+						<span className='table__page-count'>
+							Page {pageIndex + 1} of {pageOptions.length}
+						</span>
 					</div>
 				</>
 			)}
