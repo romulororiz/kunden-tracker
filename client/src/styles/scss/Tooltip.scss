@@ -1,0 +1,21 @@
+@import 'variables';
+
+.tooltip[data-theme~='default'] {
+	background-color: $primary-darker;
+	border: none;
+	padding: 2px 6px;
+	color: #fff;
+	font-weight: 500;
+	font-size: $font-size-sm;
+	text-transform: uppercase;
+	margin-bottom: -2px;
+    margin-left: -5px;
+
+	// @media ($desktopXS) {
+	// 	font-size: $font-xxs;
+	// }
+
+	// @media ($mobileL) {
+	// 	font-size: 10px;
+	// }
+}

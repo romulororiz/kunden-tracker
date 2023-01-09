@@ -9,6 +9,7 @@
 	color: $off-white-2;
 	background-color: $primary-darker;
 	box-shadow: $base-box-shadow;
+	padding: 0 2rem;
 
 	.header__items-wrapper {
 		@include container;

@@ -36,7 +36,7 @@ const Sidebar = () => {
 
 	return (
 		<aside className='sidebar'>
-			{windowDimension <= 720 ? (
+			{windowDimension <= 780 ? (
 				<h3 className='sidebar__logo sidebar__logo-text'>KT</h3>
 			) : (
 				<div className='sidebar__logo'>

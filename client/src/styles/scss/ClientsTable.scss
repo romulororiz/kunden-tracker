@@ -1,4 +1,4 @@
-@import 'variables', 'mixins';
+@import 'variables', 'mixins', 'breakpoints';
 
 table {
 	width: 100%;
@@ -9,6 +9,10 @@ table {
 	border-collapse: collapse;
 	font-size: $font-size-md;
 	border-radius: 5px;
+
+	@include lg {
+		font-size: $font-size-sm;
+	}
 
 	th {
 		border-bottom: 1px solid #f3f5f7;
@@ -34,8 +38,40 @@ table {
 			border-right: 0;
 		}
 
+		ul {
+			padding: 0;
+		}
+
 		li {
-			text-align: left;
+			display: flex;
+			justify-content: center;
+			list-style-type: none;
+
+			.day {
+				width: 80px;
+				font-weight: 500;
+				display: flex;
+				justify-self: left;
+				margin-right: 30px;
+				color: lighten($color: $primary-darker, $amount: 15%);
+			}
+
+			.times {
+				width: 140px;
+			}
+
+			@include lg {
+				flex-direction: column;
+				align-items: center;
+				justify-content: center !important;
+				font-size: $font-size-sm;
+
+				.day {
+					margin: 0;
+					width: 100%;
+					display: inline-block;
+				}
+			}
 		}
 	}
 
@@ -43,6 +79,10 @@ table {
 		display: flex;
 		justify-content: space-around;
 		font-size: 16px;
+
+		@include lg {
+			font-size: 14px;
+		}
 
 		.table__action-icon {
 			cursor: pointer;

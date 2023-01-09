@@ -9,6 +9,7 @@ import ClientsTable from '../components/Layout/ClientsTable';
 import Spinner from '@components/Spinner';
 import '@styles/scss/ClientsTable.scss';
 import '@styles/scss/Clients.scss';
+import Tooltip from '../components/Tooltip';
 
 const Clients = () => {
 	const [query, setQuery] = useState('');
@@ -93,7 +94,10 @@ const Clients = () => {
 					return (
 						<ul key={index}>
 							<li>
-								{dayOfWeek}: {startTime} - {endTime}
+								<span className='day'>{dayOfWeek}:</span>{' '}
+								<div className='times'>
+									{startTime} - {endTime}
+								</div>
 							</li>
 						</ul>
 					);
@@ -121,15 +125,20 @@ const Clients = () => {
 		<div className='clients'>
 			{clients.length > 0 ? (
 				<>
-					{/* <button type='submit' className='client__add-btn'>
-						Add new client
-					</button> */}
-					<input
-						type='text'
-						placeholder='Search'
-						onChange={e => setQuery(e.target.value)}
-						className='client__filter'
-					/>
+					<div className='clients__actions'>
+						<Tooltip name='Add new client'>
+							<button type='submit' className='client__add-btn'>
+								+
+							</button>
+						</Tooltip>
+						{/* <span className='client__tooltip'>Add new client</span> */}
+						<input
+							type='text'
+							placeholder='Search'
+							onChange={e => setQuery(e.target.value)}
+							className='client__filter'
+						/>
+					</div>
 					<ClientsTable
 						columns={columns}
 						data={search(data)}
@@ -137,7 +146,9 @@ const Clients = () => {
 					/>
 				</>
 			) : (
-				<p className='clients__message'>You have no clients to display</p>
+				<p className='clients__message'>
+					You have no clients to display. <span>Add a new client</span>
+				</p>
 			)}
 		</div>
 	);
