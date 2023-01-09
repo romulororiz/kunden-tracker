@@ -5,8 +5,8 @@ import {
 	Navigate,
 } from 'react-router-dom';
 import Register from '@pages/Register';
-import Dashboard from '@components/Dashboard';
-import Clients from '@components/Clients';
+import Dashboard from '@pages/Dashboard';
+import Clients from '@pages/Clients';
 import Login from '@pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
@@ -36,7 +36,6 @@ const App = () => {
 							<Route path='/clients' element={<Clients />} />
 						</Route>
 					</Route>
-
 					<Route
 						path='/login'
 						element={user ? <Navigate to='/dashboard' /> : <Login />}

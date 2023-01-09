@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logout } from '@features/auth/authSlice';
 import { BiLogOut } from 'react-icons/bi';
-import useWindowSize from '../../hooks/useWindowSize';
+import useWindowSize from '@hooks/useWindowSize';
 import Logo from '@assets/svgs/logo.svg';
-import { sidebarLinks } from '../../config/data';
+import { sidebarLinks } from '@config/data';
 import '@styles/scss/Sidebar.scss';
 
 const Sidebar = () => {

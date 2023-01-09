@@ -14,7 +14,7 @@ const getClients = asyncHandler(async (req, res) => {
 		throw new Error('User not found');
 	}
 
-	const clients = await Client.find({ user: req.user.id });
+	const clients = await Client.find({ user: req.user.id }).sort('-createdAt');
 
 	res.status(200).json(clients);
 });

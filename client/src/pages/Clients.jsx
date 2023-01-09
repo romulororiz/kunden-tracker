@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { getClients } from '../features/clients/clientSlice';
 import { useMemo } from 'react';
 import { toast } from 'react-toastify';
-import ClientsTable from './Layout/ClientsTable';
+import ClientsTable from '../components/Layout/ClientsTable';
 import Spinner from '@components/Spinner';
 import '@styles/scss/ClientsTable.scss';
 import '@styles/scss/Clients.scss';
 
 const Clients = () => {
 	const [query, setQuery] = useState('');
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -93,6 +94,9 @@ const Clients = () => {
 		<div className='clients'>
 			{clients.length > 0 ? (
 				<>
+					<button type='submit' className='client__add-btn'>
+						Add new client
+					</button>
 					<input
 						type='text'
 						placeholder='Search'
