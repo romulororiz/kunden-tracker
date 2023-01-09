@@ -39,6 +39,24 @@ table {
 		}
 	}
 
+	.table__action {
+		display: flex;
+		justify-content: space-around;
+		font-size: 16px;
+
+		.table__action-icon {
+			cursor: pointer;
+		}
+
+		.table__action-delete {
+			color: $error;
+		}
+
+		.table__action-update {
+			color: $primary-darker;
+		}
+	}
+
 	.clients__message {
 		@include clientMessage;
 	}
@@ -71,6 +89,11 @@ table {
 			background-color: $primary-darker;
 			color: $off-white-1;
 		}
+	}
+
+	.table__clients-count {
+		position: absolute;
+		left: 0;
 	}
 
 	.table__page-count {

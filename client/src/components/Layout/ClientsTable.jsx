@@ -1,6 +1,6 @@
 import { usePagination, useTable } from 'react-table';
 
-const ClientsTable = ({ columns, data }) => {
+const ClientsTable = ({ columns, data, clients }) => {
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -62,6 +62,9 @@ const ClientsTable = ({ columns, data }) => {
 						</tbody>
 					</table>
 					<div className='table__pagination-wrapper'>
+						<span className='table__clients-count'>
+							Showing {page.length} of {clients.length} clients
+						</span>
 						<div className='pagination'>
 							<button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
 								{'<<'}

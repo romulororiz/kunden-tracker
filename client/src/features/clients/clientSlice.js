@@ -155,6 +155,21 @@ export const clientSlice = createSlice({
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
+			})
+			.addCase(deleteClient.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(deleteClient.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.clients = state.clients.filter(
+					client => client._id !== action.payload
+				);
+			})
+			.addCase(deleteClient.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
 			});
 	},
 });

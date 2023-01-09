@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { getClients } from '../features/clients/clientSlice';
+import { FaTrashAlt } from 'react-icons/fa';
+import { BsPencilSquare } from 'react-icons/bs';
+import { useCallback, useEffect, useState } from 'react';
+import { deleteClient, getClients } from '../features/clients/clientSlice';
 import { useMemo } from 'react';
 import { toast } from 'react-toastify';
 import ClientsTable from '../components/Layout/ClientsTable';
@@ -39,6 +41,14 @@ const Clients = () => {
 		dispatch(getClients());
 	}, [dispatch, isError, isSuccess, message]);
 
+	const handleDelete = useCallback(() => {
+		const clientID = document
+			.querySelector('.table__action-delete')
+			.getAttribute('data-id');
+
+		dispatch(deleteClient(clientID));
+	}, [dispatch]);
+
 	const columns = useMemo(
 		() => [
 			{
@@ -53,13 +63,17 @@ const Clients = () => {
 				Header: 'Working Hours',
 				accessor: 'workingHours',
 			},
+			{
+				Header: 'Actions',
+				accessor: 'actions',
+			},
 		],
 		[]
 	);
 
 	const data = useMemo(
 		() =>
-			clients.map(client => ({
+			clients.map((client, index) => ({
 				name: `${client.firstName} ${client.lastName}`,
 				address: `${client.address.street}, ${client.address.houseNumber} - ${client.address.postalCode} - ${client.address.city}`,
 				workingHours: client.workingHours.map(workingHour => {
@@ -77,15 +91,28 @@ const Clients = () => {
 						hour12: true,
 					}).format(new Date(workingHour.endTime));
 					return (
-						<ul key={client._id}>
+						<ul key={index}>
 							<li>
 								{dayOfWeek}: {startTime} - {endTime}
 							</li>
 						</ul>
 					);
 				}),
+				actions: (
+					<div className='table__action' key={index}>
+						<FaTrashAlt
+							data-id={client._id}
+							onClick={handleDelete}
+							className='table__action-icon table__action-delete'
+						/>
+						<BsPencilSquare
+							data-id={client._id}
+							className='table__action-icon table__action-update'
+						/>
+					</div>
+				),
 			})),
-		[clients]
+		[clients, handleDelete]
 	);
 
 	if (isLoading) return <Spinner />;
@@ -94,16 +121,20 @@ const Clients = () => {
 		<div className='clients'>
 			{clients.length > 0 ? (
 				<>
-					<button type='submit' className='client__add-btn'>
+					{/* <button type='submit' className='client__add-btn'>
 						Add new client
-					</button>
+					</button> */}
 					<input
 						type='text'
 						placeholder='Search'
 						onChange={e => setQuery(e.target.value)}
 						className='client__filter'
 					/>
-					<ClientsTable columns={columns} data={search(data)} />
+					<ClientsTable
+						columns={columns}
+						data={search(data)}
+						clients={clients}
+					/>
 				</>
 			) : (
 				<p className='clients__message'>You have no clients to display</p>

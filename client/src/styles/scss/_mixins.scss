@@ -16,8 +16,8 @@
 @mixin clientMessage {
 	width: 100%;
 	font-size: $font-size-md;
-	text-align: left;
-	color: $off-white-2;
+	text-align: center;
+	color: $off-white-1;
 	background-color: $error;
 	padding: 10px 35px;
 }
