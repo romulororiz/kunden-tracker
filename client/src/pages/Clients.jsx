@@ -117,36 +117,43 @@ const Clients = () => {
 	if (isLoading) return <Spinner />;
 
 	return (
-		<div className='clients'>
-			{clients.length > 0 ? (
-				<>
-					<Modal />
-					<div className='clients__actions'>
-						<Tooltip name='Add new client'>
-							<button type='submit' className='client__add-btn'>
-								+
-							</button>
-						</Tooltip>
-						{/* <span className='client__tooltip'>Add new client</span> */}
-						<input
-							type='text'
-							placeholder='Search'
-							onChange={e => setQuery(e.target.value)}
-							className='client__filter'
+		<>
+			{modalIsOpen && <Modal onClose={() => setModalIsOpen(false)} />}
+			<div className='clients'>
+				{clients.length > 0 ? (
+					<>
+						<div className='clients__actions'>
+							<Tooltip name='Add new client'>
+								<button
+									type='button'
+									className='client__add-btn'
+									onClick={() => setModalIsOpen(true)}
+								>
+									+
+								</button>
+							</Tooltip>
+							{/* <span className='client__tooltip'>Add new client</span> */}
+							<input
+								type='text'
+								placeholder='Search'
+								onChange={e => setQuery(e.target.value)}
+								className='client__filter'
+							/>
+						</div>
+						<ClientsTable
+							columns={columns}
+							data={search(data)}
+							clients={clients}
 						/>
-					</div>
-					<ClientsTable
-						columns={columns}
-						data={search(data)}
-						clients={clients}
-					/>
-				</>
-			) : (
-				<p className='clients__message'>
-					You have no clients to display. <span>Add a new client</span>
-				</p>
-			)}
-		</div>
+					</>
+				) : (
+					<p className='clients__message'>
+						You have no clients to display.{' '}
+						<span onClick={() => setModalIsOpen(true)}>Add a new client</span>
+					</p>
+				)}
+			</div>
+		</>
 	);
 };
 

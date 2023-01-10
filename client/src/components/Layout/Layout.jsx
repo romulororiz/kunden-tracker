@@ -1,15 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import '@styles/scss/Layout.scss';
 import Header from './Header';
 import { useSelector } from 'react-redux';
 import useWindowSize from '@hooks/useWindowSize';
 import { useEffect, useState } from 'react';
+import '@styles/scss/Layout.scss';
 
 const Layout = () => {
 	const [showSidebar, setShowSidebar] = useState(false);
-
-	// Handle close on click outside
 
 	// Get user
 	const { user } = useSelector(state => state.auth);

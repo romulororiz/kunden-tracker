@@ -26,3 +26,9 @@
 	max-width: 1300px;
 	margin: 0 auto;
 }
+
+@mixin workingHoursActions($color, $fs) {
+	font-size: $fs;
+	color: $color;
+	cursor: pointer;
+}
