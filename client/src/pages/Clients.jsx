@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useCallback, useEffect, useState } from 'react';
-import { deleteClient, getClients } from '../features/clients/clientSlice';
+import { deleteClient, getClients, reset } from '@features/clients/clientSlice';
 import { useMemo } from 'react';
-import { toast } from 'react-toastify';
-import ClientsTable from '../components/Layout/ClientsTable';
+import ClientsTable from '@components/Layout/ClientsTable';
 import Spinner from '@components/Spinner';
 import '@styles/scss/ClientsTable.scss';
 import '@styles/scss/Clients.scss';
-import Tooltip from '../components/Tooltip';
+import Tooltip from '@components/Tooltip';
+import Modal from '@components/Modal';
 
 const Clients = () => {
 	const [query, setQuery] = useState('');
@@ -18,11 +18,7 @@ const Clients = () => {
 	const dispatch = useDispatch();
 
 	// get clients from state
-	const { clients, isLoading, isError, isSuccess, message } = useSelector(
-		state => state.client
-	);
-
-	console.log(clients);
+	const { clients, isLoading, isSuccess } = useSelector(state => state.client);
 
 	// table keys to get filtered by
 	const keys = ['name', 'address'];
@@ -35,20 +31,23 @@ const Clients = () => {
 	};
 
 	useEffect(() => {
-		if (isError) {
-			toast.error(message);
-		}
+		return () => {
+			if (isSuccess) {
+				return dispatch(reset());
+			}
+		};
+	}, [dispatch, isSuccess, clients]);
 
+	useEffect(() => {
 		dispatch(getClients());
-	}, [dispatch, isError, isSuccess, message]);
-
-	const handleDelete = useCallback(() => {
-		const clientID = document
-			.querySelector('.table__action-delete')
-			.getAttribute('data-id');
-
-		dispatch(deleteClient(clientID));
 	}, [dispatch]);
+
+	const handleDelete = useCallback(
+		id => {
+			dispatch(deleteClient(id));
+		},
+		[dispatch]
+	);
 
 	const columns = useMemo(
 		() => [
@@ -92,7 +91,7 @@ const Clients = () => {
 						hour12: true,
 					}).format(new Date(workingHour.endTime));
 					return (
-						<ul key={index}>
+						<ul key={workingHour._id}>
 							<li>
 								<span className='day'>{dayOfWeek}:</span>{' '}
 								<div className='times'>
@@ -105,14 +104,10 @@ const Clients = () => {
 				actions: (
 					<div className='table__action' key={index}>
 						<FaTrashAlt
-							data-id={client._id}
-							onClick={handleDelete}
+							onClick={() => handleDelete(client._id)}
 							className='table__action-icon table__action-delete'
 						/>
-						<BsPencilSquare
-							data-id={client._id}
-							className='table__action-icon table__action-update'
-						/>
+						<BsPencilSquare className='table__action-icon table__action-update' />
 					</div>
 				),
 			})),
@@ -125,6 +120,7 @@ const Clients = () => {
 		<div className='clients'>
 			{clients.length > 0 ? (
 				<>
+					<Modal />
 					<div className='clients__actions'>
 						<Tooltip name='Add new client'>
 							<button type='submit' className='client__add-btn'>

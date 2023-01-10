@@ -9,12 +9,19 @@
 	padding: 0 20px;
 	background-color: #fff;
 	font-family: Poppins, sans-serif;
+	transition: $ease-1;
+	z-index: 100;
+	box-shadow: $base-box-shadow;
 
 	.sidebar__logo {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 50px 0;
+		margin: 35px 0 90px 0;
+
+		@include md {
+			margin: 35px 0 50px 0;
+		}
 	}
 
 	.sidebar__logo-text {
@@ -70,9 +77,16 @@
 	}
 }
 
+.sidebar-hide {
+	transform: translateX(-500px);
+	transition: $ease-1;
+}
+
 @include md {
 	.sidebar {
-		width: 100px;
+		font-size: $font-size-sm;
+		width: 80px;
+		padding: 0 12px;
 	}
 
 	.sidebar__link {

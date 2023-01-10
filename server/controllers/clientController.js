@@ -50,8 +50,15 @@ const getClient = asyncHandler(async (req, res) => {
 // @route POST /api/clients
 // @access private
 const addClient = asyncHandler(async (req, res) => {
-	const { firstName, lastName, city, street, houseNumber, postalCode } =
-		req.body;
+	const {
+		firstName,
+		lastName,
+		city,
+		street,
+		houseNumber,
+		postalCode,
+		workingHours,
+	} = req.body;
 
 	if (
 		!firstName ||
@@ -59,7 +66,9 @@ const addClient = asyncHandler(async (req, res) => {
 		!city ||
 		!street ||
 		!houseNumber ||
-		!postalCode
+		!postalCode ||
+		!req.body.workingHours ||
+		!Array.isArray(req.body.workingHours)
 	) {
 		res.status(400);
 		throw new Error('Please fill in all fields');
@@ -82,6 +91,7 @@ const addClient = asyncHandler(async (req, res) => {
 			houseNumber: houseNumber,
 			postalCode: postalCode,
 		},
+		workingHours,
 		status: 'new',
 	});
 

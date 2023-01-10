@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables', 'breakpoints';
 
 .tooltip[data-theme~='default'] {
 	background-color: $primary-darker;
@@ -7,9 +7,12 @@
 	color: #fff;
 	font-weight: 500;
 	font-size: $font-size-sm;
-	text-transform: uppercase;
 	margin-bottom: -2px;
-    margin-left: -5px;
+	margin-left: -5px;
+
+	@include md {
+		padding: 0 !important;
+	}
 
 	// @media ($desktopXS) {
 	// 	font-size: $font-xxs;

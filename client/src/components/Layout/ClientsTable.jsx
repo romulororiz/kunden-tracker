@@ -35,9 +35,9 @@ const ClientsTable = ({ columns, data, clients }) => {
 					<table {...getTableProps()}>
 						<thead>
 							{headerGroups.map((headerGroup, idx) => (
-								<tr key={idx} {...headerGroup.getHeaderGroupProps()}>
+								<tr {...headerGroup.getHeaderGroupProps()}>
 									{headerGroup.headers.map((column, idx) => (
-										<th key={idx} {...column.getHeaderProps()}>
+										<th {...column.getHeaderProps()}>
 											{column.render('Header')}
 										</th>
 									))}
@@ -48,12 +48,10 @@ const ClientsTable = ({ columns, data, clients }) => {
 							{page.map((row, idx) => {
 								prepareRow(row);
 								return (
-									<tr key={idx} {...row.getRowProps()}>
+									<tr {...row.getRowProps()}>
 										{row.cells.map((cell, idx) => {
 											return (
-												<td key={idx} {...cell.getCellProps()}>
-													{cell.render('Cell')}
-												</td>
+												<td {...cell.getCellProps()}>{cell.render('Cell')}</td>
 											);
 										})}
 									</tr>

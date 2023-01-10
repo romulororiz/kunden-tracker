@@ -12,7 +12,7 @@ const initialState = {
 
 // Create new Client
 export const addClient = createAsyncThunk(
-	'client/add',
+	'client/addClient',
 	async (clientData, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
@@ -121,7 +121,7 @@ export const clientSlice = createSlice({
 			.addCase(addClient.pending, state => {
 				state.isLoading = true;
 			})
-			.addCase(addClient.fulfilled, state => {
+			.addCase(addClient.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isSuccess = true;
 			})

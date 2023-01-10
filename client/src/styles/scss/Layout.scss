@@ -9,11 +9,21 @@
 		margin-left: 200px;
 		margin-top: 60px;
 	}
+
+	.main__no-sidebar {
+		width: 100%;
+		margin-left: 0;
+	}
 }
 
 @include md {
 	.main {
-		width: calc(100% - 100px) !important;
-		margin-left: 100px !important;
+		width: calc(100%) !important;
+		margin-left: 0 !important;
+	}
+
+	.main__no-sidebar {
+		width: 100% !important;
+		margin-left: 0 !important;
 	}
 }

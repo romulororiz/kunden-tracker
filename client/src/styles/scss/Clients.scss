@@ -1,4 +1,4 @@
-@import 'variables', 'mixins';
+@import 'variables', 'mixins', 'breakpoints';
 
 .clients {
 	display: flex;
@@ -29,6 +29,12 @@
 				color: #fff;
 				transform: rotate(-360deg);
 			}
+
+			@include lg {
+				width: 30px;
+				height: 30px;
+				font-size: $font-size-md;
+			}
 		}
 
 		.client__filter {
@@ -47,6 +53,11 @@
 
 			&:focus {
 				border: 1px solid #dfe1e3;
+			}
+
+			@include lg {
+				height: 25px;
+				font-size: $font-size-sm;
 			}
 		}
 	}

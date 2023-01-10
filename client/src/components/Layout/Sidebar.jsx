@@ -8,7 +8,7 @@ import Logo from '@assets/svgs/logo.svg';
 import { sidebarLinks } from '@config/data';
 import '@styles/scss/Sidebar.scss';
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar, sidebarRef }) => {
 	const [windowDimension, setWindowDimension] = useState(0);
 
 	// Get window size
@@ -35,8 +35,11 @@ const Sidebar = () => {
 	};
 
 	return (
-		<aside className='sidebar'>
-			{windowDimension <= 780 ? (
+		<aside
+			ref={sidebarRef}
+			className={`sidebar ${showSidebar ? '' : 'sidebar-hide'}`}
+		>
+			{windowDimension <= 760 ? (
 				<h3 className='sidebar__logo sidebar__logo-text'>KT</h3>
 			) : (
 				<div className='sidebar__logo'>
@@ -47,7 +50,7 @@ const Sidebar = () => {
 			{sidebarLinks.map(({ linkTitle, link, linkText, Icon }, index) => (
 				<div key={index} className='sidebar__section'>
 					<div className='sidebar__section-title'>
-						{linkTitle === 'Customization' && windowDimension <= 720
+						{linkTitle === 'Customization' && windowDimension <= 760
 							? 'Custom.'
 							: linkTitle}
 					</div>

@@ -1,4 +1,4 @@
-@import 'variables', 'mixins';
+@import 'variables', 'mixins', 'breakpoints';
 
 .header {
 	display: flex;
@@ -10,6 +10,65 @@
 	background-color: $primary-darker;
 	box-shadow: $base-box-shadow;
 	padding: 0 2rem;
+	position: relative;
+
+	@include md {
+		font-size: 12px;
+	}
+
+	.sidebar__burger {
+		position: absolute;
+		top: 20px;
+		left: 10px;
+		width: 26px;
+		height: 26px;
+		cursor: pointer;
+		z-index: 1;
+		margin-left: 100px;
+
+		span,
+		span::before,
+		span::after {
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: $off-white-2;
+			transition-duration: 0.25s;
+		}
+		span::before {
+			content: '';
+			top: -8px;
+		}
+		span::after {
+			content: '';
+			top: 8px;
+		}
+
+		@include md {
+			margin-left: 50px;
+		}
+	}
+
+	// burger
+	#sidebar__toggle {
+		display: none;
+	}
+	#sidebar__toggle:checked + .sidebar__burger > span {
+		transform: rotate(45deg);
+	}
+	#sidebar__toggle:checked + .sidebar__burger > span::before {
+		top: 0;
+		transform: rotate(0deg);
+	}
+	#sidebar__toggle:checked + .sidebar__burger > span::after {
+		top: 0;
+		transform: rotate(90deg);
+	}
+
+	.sidebar__burger-no-sidebar {
+		margin-left: 0;
+	}
 
 	.header__items-wrapper {
 		@include container;

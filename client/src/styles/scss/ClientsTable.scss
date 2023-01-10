@@ -10,7 +10,7 @@ table {
 	font-size: $font-size-md;
 	border-radius: 5px;
 
-	@include lg {
+	@include md {
 		font-size: $font-size-sm;
 	}
 
@@ -33,6 +33,10 @@ table {
 		margin: 0;
 		padding: 20px 25px;
 		text-align: center;
+
+		@include lg {
+			padding: 10px 5px;
+		}
 
 		&:last-child {
 			border-right: 0;
@@ -84,6 +88,13 @@ table {
 			font-size: 14px;
 		}
 
+		@include md {
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			font-size: 12px;
+		}
+
 		.table__action-icon {
 			cursor: pointer;
 		}
@@ -108,6 +119,10 @@ table {
 	justify-content: center;
 	width: 100%;
 	position: relative;
+
+	@include md {
+		font-size: $font-size-sm;
+	}
 
 	button {
 		background-color: #fff;
@@ -134,6 +149,10 @@ table {
 	.table__clients-count {
 		position: absolute;
 		left: 0;
+
+		@include sm {
+			width: 20%;
+		}
 	}
 
 	.table__page-count {
