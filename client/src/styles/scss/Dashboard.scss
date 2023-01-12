@@ -1,0 +1,16 @@
+.dashboard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+
+	.dashboard_wrapper {
+		display: flex;
+		justify-content: center;
+		gap: 600px;
+	}
+
+	> h2 {
+		margin-top: 300px;
+	}
+}

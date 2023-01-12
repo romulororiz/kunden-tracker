@@ -22,11 +22,11 @@
 .modal__content {
 	width: fit-content;
 	padding: 30px;
-	background-color: $off-white-2;
+	background-color: $off-white-1;
 	position: relative;
-	border-radius: 5px;
+	border-radius: 8px;
 
-    .modal__fade-out {
+	.modal__fade-out {
 		animation: fadeOut 0.5s ease;
 	}
 
@@ -87,7 +87,7 @@
 
 	input {
 		border-radius: 5px;
-		border: none;
+		border: 1px solid lighten($color: $light-gray, $amount: 25%);
 		outline: none;
 		padding: 5px 10px;
 		font-size: $font-size-md;
@@ -106,7 +106,7 @@
 		align-items: center;
 		padding: 5px 8px;
 		background-color: $primary-darker;
-		color: $off-white-2;
+		color: #fff;
 
 		.modal__working-hours-times {
 			width: 100%;
@@ -127,7 +127,7 @@
 		background-color: $primary;
 		border: none;
 		display: block;
-		width: 120px;
+		width: 100%;
 		position: relative;
 		padding: 5px 12px;
 		border-radius: 5px;
@@ -143,6 +143,7 @@
 
 		.modal__submit-icon {
 			position: absolute;
+			left: 40%;
 			top: 50%;
 			transform: translateY(-50%);
 		}

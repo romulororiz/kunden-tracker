@@ -54,7 +54,7 @@ export const deleteClient = async (clientId, token) => {
 	}
 };
 
-export const updateClient = async (clientId, clientData, token) => {
+const updateClient = async (clientId, clientData, token) => {
 	const config = {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -72,10 +72,10 @@ export const updateClient = async (clientId, clientData, token) => {
 
 const clientService = {
 	addClient,
+	updateClient,
 	getClients,
 	getSingleClient,
 	deleteClient,
-	updateClient,
 };
 
 export default clientService;

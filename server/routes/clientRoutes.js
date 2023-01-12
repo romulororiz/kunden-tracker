@@ -7,19 +7,14 @@ const {
 	getClient,
 	deleteClient,
 	updateClient,
-	filteredClients,
 } = require('../controllers/clientController');
 
-router
-	.route('/')
-	.get(protectRoute, getClients)
-	.post(protectRoute, addClient)
-	.get(protectRoute, filteredClients);
+router.route('/').get(protectRoute, getClients).post(protectRoute, addClient);
 
 router
 	.route('/:id')
+	.put(protectRoute, updateClient)
 	.get(protectRoute, getClient)
 	.delete(protectRoute, deleteClient)
-	.put(protectRoute, updateClient);
 
 module.exports = router;
