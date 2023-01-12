@@ -11,9 +11,7 @@ export const addClient = async (clientData, token) => {
 
 	const { data } = await axios.post(API_URL, clientData, config);
 
-	if (data) {
-		return clientData;
-	}
+	return data;
 };
 
 export const getClients = async token => {
@@ -24,6 +22,8 @@ export const getClients = async token => {
 	};
 
 	const { data } = await axios.get(API_URL, config);
+
+	console.log(data);
 
 	return data;
 };

@@ -10,6 +10,7 @@ import '@styles/scss/ClientsTable.scss';
 import '@styles/scss/Clients.scss';
 import Tooltip from '@components/Tooltip';
 import Modal from '@components/Modal';
+import { toast } from 'react-toastify';
 
 const Clients = () => {
 	const [query, setQuery] = useState('');
@@ -20,7 +21,11 @@ const Clients = () => {
 	const dispatch = useDispatch();
 
 	// get clients from state
-	const { clients, isLoading, isSuccess } = useSelector(state => state.client);
+	const { clients, isLoading, isSuccess, isError, message } = useSelector(
+		state => state.client
+	);
+
+	console.log(clients);
 
 	// table keys to get filtered by
 	const keys = ['name', 'address'];
@@ -36,16 +41,21 @@ const Clients = () => {
 	useEffect(() => {
 		return () => {
 			if (isSuccess) {
-				return dispatch(reset());
+				dispatch(reset());
 			}
 		};
-	}, [dispatch, isSuccess, clients]);
+	}, [dispatch, isSuccess, clients, isError, message]);
 
 	// Get clients on first render
 	useEffect(() => {
-		dispatch(getClients());
+		const fetchClients = async () => {
+			await dispatch(getClients());
+		};
+
+		fetchClients();
 	}, [dispatch]);
 
+	// Delete client on ID
 	const handleDelete = useCallback(
 		id => {
 			dispatch(deleteClient(id));
@@ -53,6 +63,7 @@ const Clients = () => {
 		[dispatch]
 	);
 
+	// Close modal and if its updating mode, set it to false
 	const handleCloseModal = () => {
 		setModalIsOpen(false);
 		setSelectedClientId(null);
@@ -62,7 +73,7 @@ const Clients = () => {
 		}
 	};
 
-	// Handle update
+	// Set update mode to true and pass clientID to update
 	const handleUpdate = clientId => {
 		setIsUpdate(true);
 		setSelectedClientId(clientId);

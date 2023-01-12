@@ -182,7 +182,6 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 		};
 
 		dispatch(addClient(clientData));
-		console.log(clientData);
 
 		// Close modal on submit
 		onClose();

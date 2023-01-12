@@ -124,20 +124,10 @@ export const clientSlice = createSlice({
 			.addCase(addClient.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isSuccess = true;
-				const { address, ...rest } = action.payload;
-				const { firstName, lastName, workingHours } = rest;
 				const newClient = {
-					firstName,
-					lastName,
-					workingHours,
-					address: {
-						city: action.payload.city,
-						street: action.payload.street,
-						houseNumber: action.payload.houseNumber,
-						postalCode: action.payload.postalCode,
-					},
+					...action.payload,
 				};
-				state.clients.unshift(newClient);
+				state.clients = [newClient, ...state.clients];
 			})
 			.addCase(addClient.rejected, (state, action) => {
 				state.isLoading = false;
