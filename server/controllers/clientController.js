@@ -53,10 +53,7 @@ const addClient = asyncHandler(async (req, res) => {
 	const {
 		firstName,
 		lastName,
-		city,
-		street,
-		houseNumber,
-		postalCode,
+		address: { city, street, houseNumber, postalCode },
 		workingHours,
 	} = req.body;
 
@@ -153,49 +150,10 @@ const updateClient = asyncHandler(async (req, res) => {
 	res.status(200).json(updatedClient);
 });
 
-// @desc Update client
-// @route GET /api/clients
-// @access private
-const filteredClients = (req, res) => {
-	let firstName = '';
-	let lastName = '';
-	let city = '';
-
-	// If the param is present set the variable to value
-	if (req.query.firstName) {
-		firstName = req.query.firstName;
-	}
-
-	if (req.query.lastName) {
-		lastName = req.query.lastName;
-	}
-
-	if (req.query.city) {
-		city = req.query.city;
-	}
-
-	Client.find(
-		{
-			firstName: new RegExp(firstName, i),
-			lastName: new RegExp(lastName, i),
-			'address.city': new RegExp(city, i),
-		},
-		(err, clients) => {
-			if (err) {
-				res.status(404);
-				throw new Error('Error');
-			} else {
-				res.send(clients);
-			}
-		}
-	);
-};
-
 module.exports = {
 	getClients,
 	addClient,
 	getClient,
 	deleteClient,
 	updateClient,
-	filteredClients,
 };
