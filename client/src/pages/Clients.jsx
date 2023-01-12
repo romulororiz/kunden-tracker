@@ -14,6 +14,8 @@ import Modal from '@components/Modal';
 const Clients = () => {
 	const [query, setQuery] = useState('');
 	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [isUpdate, setIsUpdate] = useState(false);
+	const [selectedClientId, setSelectedClientId] = useState(null);
 
 	const dispatch = useDispatch();
 
@@ -30,6 +32,7 @@ const Clients = () => {
 		);
 	};
 
+	// If success reset state
 	useEffect(() => {
 		return () => {
 			if (isSuccess) {
@@ -38,6 +41,7 @@ const Clients = () => {
 		};
 	}, [dispatch, isSuccess, clients]);
 
+	// Get clients on first render
 	useEffect(() => {
 		dispatch(getClients());
 	}, [dispatch]);
@@ -48,6 +52,21 @@ const Clients = () => {
 		},
 		[dispatch]
 	);
+
+	const handleCloseModal = () => {
+		setModalIsOpen(false);
+		setSelectedClientId(null);
+
+		if (isUpdate) {
+			setIsUpdate(false);
+		}
+	};
+
+	// Handle update
+	const handleUpdate = clientId => {
+		setIsUpdate(true);
+		setSelectedClientId(clientId);
+	};
 
 	const columns = useMemo(
 		() => [
@@ -83,31 +102,35 @@ const Clients = () => {
 					const startTime = new Intl.DateTimeFormat('en-US', {
 						hour: 'numeric',
 						minute: 'numeric',
-						hour12: true,
+						hour12: false,
 					}).format(new Date(workingHour.startTime));
 					const endTime = new Intl.DateTimeFormat('en-US', {
 						hour: 'numeric',
 						minute: 'numeric',
-						hour12: true,
+						hour12: false,
 					}).format(new Date(workingHour.endTime));
 					return (
 						<ul key={workingHour._id}>
-							<li>
+							<li key={index}>
 								<span className='day'>{dayOfWeek}:</span>{' '}
 								<div className='times'>
-									{startTime} - {endTime}
+									{startTime} {startTime >= '12' ? 'pm' : 'am'} - {endTime}{' '}
+									{endTime >= '12' ? 'pm' : 'am'}
 								</div>
 							</li>
 						</ul>
 					);
 				}),
 				actions: (
-					<div className='table__action' key={index}>
+					<div className='table__action' key={client._id}>
 						<FaTrashAlt
 							onClick={() => handleDelete(client._id)}
 							className='table__action-icon table__action-delete'
 						/>
-						<BsPencilSquare className='table__action-icon table__action-update' />
+						<BsPencilSquare
+							className='table__action-icon table__action-update'
+							onClick={() => handleUpdate(client._id)}
+						/>
 					</div>
 				),
 			})),
@@ -118,7 +141,13 @@ const Clients = () => {
 
 	return (
 		<>
-			{modalIsOpen && <Modal onClose={() => setModalIsOpen(false)} />}
+			{modalIsOpen || isUpdate ? (
+				<Modal
+					onClose={handleCloseModal}
+					isUpdate={isUpdate}
+					clientId={selectedClientId}
+				/>
+			) : null}
 			<div className='clients'>
 				{clients.length > 0 ? (
 					<>
@@ -132,7 +161,6 @@ const Clients = () => {
 									+
 								</button>
 							</Tooltip>
-							{/* <span className='client__tooltip'>Add new client</span> */}
 							<input
 								type='text'
 								placeholder='Search'
