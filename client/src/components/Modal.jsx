@@ -168,6 +168,12 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 			return;
 		}
 
+		// Check working hours array has at least one item
+		if (!workingHours.length) {
+			toast.error('Please add a working time');
+			return;
+		}
+
 		const clientData = {
 			firstName,
 			lastName,
@@ -176,7 +182,7 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 		};
 
 		dispatch(addClient(clientData));
-		// console.log(clientData);
+		console.log(clientData);
 
 		// Close modal on submit
 		onClose();
@@ -185,6 +191,12 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 	// Handle submit for updating a client
 	const handleUpdateSubmit = e => {
 		e.preventDefault();
+
+		// Check working hours array has at least one item
+		if (!updatingClient.workingHours.length) {
+			toast.error('Please add a working time');
+			return;
+		}
 
 		const {
 			firstName,
