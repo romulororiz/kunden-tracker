@@ -70,7 +70,7 @@ export const getSingleClient = createAsyncThunk(
 // Update a client
 export const updateClient = createAsyncThunk(
 	'client/updateClient',
-	async (clientId, clientData, thunkAPI) => {
+	async ({ clientId, clientData }, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
 			return await clientService.updateClient(clientId, clientData, token);
@@ -124,8 +124,39 @@ export const clientSlice = createSlice({
 			.addCase(addClient.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isSuccess = true;
+				const { address, ...rest } = action.payload;
+				const { firstName, lastName, workingHours } = rest;
+				const newClient = {
+					firstName,
+					lastName,
+					workingHours,
+					address: {
+						city: action.payload.city,
+						street: action.payload.street,
+						houseNumber: action.payload.houseNumber,
+						postalCode: action.payload.postalCode,
+					},
+				};
+				state.clients.unshift(newClient);
 			})
 			.addCase(addClient.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(updateClient.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(updateClient.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				const updatedClient = action.payload;
+				const index = state.clients.findIndex(
+					client => client._id === updatedClient._id
+				);
+				state.clients.splice(index, 1, updatedClient);
+			})
+			.addCase(updateClient.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
