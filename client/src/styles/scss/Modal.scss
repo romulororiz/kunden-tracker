@@ -19,12 +19,17 @@
 }
 
 // Modal
+
 .modal__content {
-	width: fit-content;
 	padding: 30px;
 	background-color: $off-white-1;
 	position: relative;
 	border-radius: 8px;
+
+	@include md {
+		font-size: $font-size-sm;
+		padding: 20px;
+	}
 
 	.modal__fade-out {
 		animation: fadeOut 0.5s ease;
@@ -35,8 +40,6 @@
 		padding: 8px;
 		margin-bottom: 12px;
 		font-weight: 500;
-		width: fit-content;
-		border-radius: 5px;
 		text-transform: uppercase;
 		position: relative;
 
@@ -63,7 +66,8 @@
 
 	.modal__group {
 		display: flex;
-		gap: 20px;
+		justify-content: space-between;
+		gap: 5px;
 	}
 
 	.modal__form-group {
@@ -75,10 +79,23 @@
 	.modal__group-times {
 		justify-content: space-between;
 
+		@include sm {
+			flex-direction: row;
+			gap: 3px;
+		}
+
 		.modal__add-hour {
 			@include workingHoursActions($primary-darker, $font-size-lg);
 			margin-top: 30px;
+
+			@include md {
+				margin-top: 25px;
+			}
 		}
+	}
+
+	.modal__group-address {
+		display: flex;
 	}
 
 	label {
@@ -96,6 +113,15 @@
 		&:focus {
 			box-shadow: 0 0 0 2px $primary-darker;
 		}
+
+		@include md {
+			font-size: $font-size-sm;
+			height: 25px;
+		}
+	}
+
+	input[type='number'] {
+		width: 70px;
 	}
 
 	.modal__working-hours-item {
@@ -146,6 +172,14 @@
 			left: 40%;
 			top: 50%;
 			transform: translateY(-50%);
+
+			@include md {
+				left: 37%;
+			}
+		}
+
+		@include md {
+			font-size: $font-size-sm;
 		}
 	}
 }

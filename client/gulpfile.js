@@ -10,11 +10,16 @@ export function buildStyles() {
 		.src('./src/styles/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(
+			autoprefixer({
+				overrideBrowserslist: ['last 2 versions'],
+				cascade: false,
+			})
+		)
+		.pipe(
 			purgecss({
 				content: ['./src/**/*.jsx'],
 			})
 		)
-		.pipe(autoprefixer())
 		.pipe(gulp.dest('./src/styles/css'));
 }
 

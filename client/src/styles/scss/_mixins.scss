@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables', 'breakpoints';
 
 @mixin authCard {
 	display: flex;
@@ -20,6 +20,10 @@
 	color: $off-white-1;
 	background-color: $error;
 	padding: 10px 35px;
+
+	@include md {
+		font-size: $font-size-sm;
+	}
 }
 
 @mixin container {
@@ -31,4 +35,8 @@
 	font-size: $fs;
 	color: $color;
 	cursor: pointer;
+
+	@include md {
+		font-size: $font-size-md;
+	}
 }

@@ -271,7 +271,7 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 							}
 						/>
 					</div>
-					<div className='modal__group'>
+					<div className='modal__group modal__group-address'>
 						<div className='modal__form-group'>
 							<label htmlFor='street'>Street</label>
 							<input
@@ -286,7 +286,7 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 							/>
 						</div>
 						<div className='modal__form-group'>
-							<label htmlFor='houseNumber'>House Number</label>
+							<label htmlFor='houseNumber'>Number</label>
 							<input
 								type='number'
 								name='address.houseNumber'
@@ -302,22 +302,25 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 								}
 							/>
 						</div>
+						<div className='modal__form-group'>
+							<label htmlFor='postalCode'>PLZ</label>
+							<input
+								type='number'
+								name='address.postalCode'
+								value={
+									updatingClient
+										? updatingClient.address.postalCode
+										: postalCode
+								}
+								onChange={
+									isUpdate
+										? handleUpdatingClient
+										: e => setPostalCode(e.target.value)
+								}
+							/>
+						</div>
 					</div>
-					<div className='modal__form-group'>
-						<label htmlFor='postalCode'>Postal Code</label>
-						<input
-							type='number'
-							name='address.postalCode'
-							value={
-								updatingClient ? updatingClient.address.postalCode : postalCode
-							}
-							onChange={
-								isUpdate
-									? handleUpdatingClient
-									: e => setPostalCode(e.target.value)
-							}
-						/>
-					</div>
+
 					<div className='modal__group modal__group-times'>
 						<div className='modal__form-group'>
 							<label htmlFor='day'>Day</label>
@@ -354,37 +357,35 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 					</div>
 				</form>
 
-				<div className='wrapper'>
-					{isUpdate
-						? updatingClient.workingHours.map((workingHour, index) => (
-								<div key={index} className='modal__working-hours-item'>
-									<div className='modal__working-hours-times'>
-										<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
-										<span>{moment(workingHour.startTime).format('HH:mm')}</span>
-										<span>{moment(workingHour.endTime).format('HH:mm')}</span>
-									</div>
-
-									<IoIosCloseCircleOutline
-										onClick={() => handleRemoveWorkingHoursClick(index)}
-										className='modal__remove-hour'
-									/>
+				{isUpdate
+					? updatingClient.workingHours.map((workingHour, index) => (
+							<div key={index} className='modal__working-hours-item'>
+								<div className='modal__working-hours-times'>
+									<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
+									<span>{moment(workingHour.startTime).format('HH:mm')}</span>
+									<span>{moment(workingHour.endTime).format('HH:mm')}</span>
 								</div>
-						  ))
-						: workingHours.map((workingHour, index) => (
-								<div key={index} className='modal__working-hours-item'>
-									<div className='modal__working-hours-times'>
-										<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
-										<span>{moment(workingHour.startTime).format('HH:mm')}</span>
-										<span>{moment(workingHour.endTime).format('HH:mm')}</span>
-									</div>
 
-									<IoIosCloseCircleOutline
-										onClick={() => handleRemoveWorkingHoursClick(index)}
-										className='modal__remove-hour'
-									/>
+								<IoIosCloseCircleOutline
+									onClick={() => handleRemoveWorkingHoursClick(index)}
+									className='modal__remove-hour'
+								/>
+							</div>
+					  ))
+					: workingHours.map((workingHour, index) => (
+							<div key={index} className='modal__working-hours-item'>
+								<div className='modal__working-hours-times'>
+									<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
+									<span>{moment(workingHour.startTime).format('HH:mm')}</span>
+									<span>{moment(workingHour.endTime).format('HH:mm')}</span>
 								</div>
-						  ))}
-				</div>
+
+								<IoIosCloseCircleOutline
+									onClick={() => handleRemoveWorkingHoursClick(index)}
+									className='modal__remove-hour'
+								/>
+							</div>
+					  ))}
 				<button
 					type='submit'
 					onClick={isUpdate ? handleUpdateSubmit : handleSubmit}

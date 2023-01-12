@@ -13,6 +13,12 @@
 	z-index: 100;
 	box-shadow: $base-box-shadow;
 
+	@include md {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.sidebar__logo {
 		display: flex;
 		align-items: center;
@@ -30,6 +36,11 @@
 		color: $primary-darker;
 		border: 2px solid $primary-darker;
 		border-radius: 30px;
+
+		@include md {
+			width: 40px;
+			height: 40px;
+		}
 	}
 
 	.sidebar__section {
@@ -42,6 +53,10 @@
 		text-transform: uppercase;
 		color: rgba(0, 0, 0, 0.75);
 		font-weight: 600;
+
+		@include md {
+			font-size: 0.65rem;
+		}
 	}
 
 	.sidebar__link {
@@ -63,7 +78,9 @@
 			top: -1px;
 			margin-right: 8px;
 			margin-left: 8px;
-			font-size: 18px;
+
+			@include md {
+			}
 		}
 	}
 
