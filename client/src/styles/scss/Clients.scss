@@ -35,6 +35,12 @@
 				height: 30px;
 				font-size: $font-size-md;
 			}
+
+			@include md {
+				width: 25px;
+				height: 25px;
+				font-size: $font-size-sm;
+			}
 		}
 
 		.client__filter {

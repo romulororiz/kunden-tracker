@@ -96,14 +96,19 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 			return;
 		}
 
-		setWorkingHours([...workingHours, newWorkingHours]);
+		if (moment(day).isSameOrAfter(moment().startOf('day'))) {
+			// code to save client with working hours
+			setWorkingHours([...workingHours, newWorkingHours]);
 
-		// If isUpdating, remove from client thats being updated
-		if (isUpdate) {
-			setUpdatingClient({
-				...updatingClient,
-				workingHours: [...updatingClient.workingHours, newWorkingHours],
-			});
+			// If isUpdating, remove from client thats being updated
+			if (isUpdate) {
+				setUpdatingClient({
+					...updatingClient,
+					workingHours: [...updatingClient.workingHours, newWorkingHours],
+				});
+			}
+		} else {
+			toast.error('You can not select date previous to today');
 		}
 	};
 

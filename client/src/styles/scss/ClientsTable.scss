@@ -10,10 +10,6 @@ table {
 	font-size: $font-size-md;
 	border-radius: 5px;
 
-	@include md {
-		font-size: $font-size-sm;
-	}
-
 	th {
 		border-bottom: 1px solid #f3f5f7;
 		border-right: 1px solid #f3f5f7;
@@ -68,7 +64,6 @@ table {
 				flex-direction: column;
 				align-items: center;
 				justify-content: center !important;
-				font-size: $font-size-sm;
 
 				.day {
 					margin: 0;
@@ -76,6 +71,14 @@ table {
 					display: inline-block;
 				}
 			}
+		}
+
+		@include md {
+			font-size: $font-size-sm;
+		}
+
+		@include sm {
+			font-size: 8px;
 		}
 	}
 
@@ -93,6 +96,10 @@ table {
 			align-items: center;
 			gap: 10px;
 			font-size: 12px;
+		}
+
+		@include sm {
+			font-size: 8px !important;
 		}
 
 		.table__action-icon {
@@ -122,6 +129,10 @@ table {
 
 	@include md {
 		font-size: $font-size-sm;
+	}
+
+	@include sm {
+		font-size: 8px;
 	}
 
 	button {

@@ -16,6 +16,10 @@
 		font-size: 12px;
 	}
 
+	@include sm {
+		font-size: 10px;
+	}
+
 	.sidebar__burger {
 		position: absolute;
 		top: 20px;
