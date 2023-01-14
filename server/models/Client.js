@@ -39,6 +39,10 @@ const clientSchema = mongoose.Schema(
 				trim: true,
 			},
 		},
+		isRecurrent: {
+			type: Boolean,
+			default: true,
+		},
 		workingHours: [
 			{
 				day: { type: Date, required: true },

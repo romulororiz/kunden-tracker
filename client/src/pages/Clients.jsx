@@ -10,7 +10,6 @@ import '@styles/scss/ClientsTable.scss';
 import '@styles/scss/Clients.scss';
 import Tooltip from '@components/Tooltip';
 import Modal from '@components/Modal';
-import { toast } from 'react-toastify';
 
 const Clients = () => {
 	const [query, setQuery] = useState('');
@@ -24,8 +23,6 @@ const Clients = () => {
 	const { clients, isLoading, isSuccess, isError, message } = useSelector(
 		state => state.client
 	);
-
-	console.log(clients);
 
 	// table keys to get filtered by
 	const keys = ['name', 'address'];

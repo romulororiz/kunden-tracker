@@ -50,6 +50,8 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 
 	const { isLoading, clients } = useSelector(state => state.client);
 
+	console.log(clients);
+
 	// If is updating, set the client thats being updated to state
 	useEffect(() => {
 		if (isUpdate) {

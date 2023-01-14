@@ -23,8 +23,6 @@ export const getClients = async token => {
 
 	const { data } = await axios.get(API_URL, config);
 
-	console.log(data);
-
 	return data;
 };
 

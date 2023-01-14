@@ -1,16 +1,11 @@
 .dashboard {
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
 	width: 100%;
 
-	.dashboard_wrapper {
+	.dashboard {
 		display: flex;
 		justify-content: center;
-		gap: 600px;
-	}
-
-	> h2 {
-		margin-top: 300px;
 	}
 }
