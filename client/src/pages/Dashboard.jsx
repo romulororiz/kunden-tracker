@@ -1,14 +1,15 @@
 import '@/styles/scss/Dashboard.scss';
 import ClientsCalendar from '@components/ClientsCalendar';
+import HourCounter from '../components/HourCounter';
 
 const Dashboard = () => {
 	return (
 		<div className='dashboard'>
+			<div className='dashboard__hour-counter'>
+				<HourCounter />
+			</div>
 			<div className='dashboard__calendar '>
 				<ClientsCalendar />
-			</div>
-			<div className='dashboard__hour-counter'>
-				<h2>Hour Counter per month widget</h2>
 			</div>
 		</div>
 	);

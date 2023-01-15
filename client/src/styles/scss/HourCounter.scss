@@ -1,0 +1,33 @@
+@import 'variables', 'breakpoints';
+
+.hour-counter__all-clients {
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 20px;
+	width: 380px;
+	box-shadow: $base-box-shadow;
+	margin: 0 auto 20px auto;
+
+	@include sm {
+		width: 280px;
+        font-size: $font-size-sm;
+	}
+
+	select {
+		color: $primary-darker;
+		border: none;
+		border-radius: 8px;
+		padding: 5px 0;
+		outline: none;
+		margin-bottom: 12px;
+	}
+
+	.hour-counter__all-clients-hour {
+		padding: 8px;
+
+		span {
+			font-size: 36px;
+			margin-right: 12px;
+		}
+	}
+}

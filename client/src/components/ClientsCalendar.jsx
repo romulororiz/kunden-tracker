@@ -29,19 +29,6 @@ const ClientsCalendar = () => {
 		setClientsToDisplay(selectedClients);
 	}, [clients, selectedDate]);
 
-	// const recurrentTiles = clients
-	// 	.filter(client => client.isRecurrent)
-	// 	.map(client =>
-	// 		client.workingHours.map(workingHour => {
-	// 			const dayOfWeek = moment(workingHour.day).format('dddd'); //friday
-	// 			return {
-	// 				day: dayOfWeek,
-	// 				className: 'calendar__recurrent',
-	// 			};
-	// 		})
-	// 	)
-	// 	.flat(); //flatten the array
-
 	const tileClassName = ({ date, view }) => {
 		// check if there is any client with working hour on the selected date
 		const clientsWithWorkingHour = clients.filter(client => {
@@ -51,19 +38,8 @@ const ClientsCalendar = () => {
 		});
 
 		if (clientsWithWorkingHour.length > 0) {
-			return 'calendar__non-recurrent';
+			return 'highlighted';
 		}
-
-		// For recurrent clients
-		// 	const day = moment(date).format('dddd');
-		// 	const match = recurrentTiles.find(tile => tile.day === day);
-		// 	if (match) {
-		// 		// calculate the end date for the recurrent period
-		// 		const endDate = moment(match.startDate).add(4, 'weeks'); //Make it dyanmic when adding the client, select how many weeks
-		// 		if (moment(date).isBetween(match.startDate, endDate, 'day', '[]')) {
-		// 			return match.className;
-		// 		}
-		// 	}
 	};
 
 	const handleDateChange = date => {
@@ -71,7 +47,7 @@ const ClientsCalendar = () => {
 	};
 
 	return (
-		<div>
+		<>
 			<Calendar
 				locale='en-US'
 				onClickDay={handleDateChange}
@@ -79,9 +55,9 @@ const ClientsCalendar = () => {
 				tileClassName={tileClassName}
 				onActiveStartDateChange={() => setClientsToDisplay([])}
 			/>
-			<div>
+			<div className='calendar__clients-container'>
 				{clientsToDisplay.map(client => (
-					<div key={client._id}>
+					<div key={client._id} className='calendar__client-item'>
 						<h3>
 							{client.firstName} {client.lastName}
 						</h3>
@@ -89,22 +65,23 @@ const ClientsCalendar = () => {
 							{client.address.street}, {client.address.houseNumber},{' '}
 							{client.address.city} - {client.address.postalCode}
 						</p>
+						{/* Filter working hour for the selected date */}
 						{client.workingHours.map(
 							workingHour =>
 								moment(workingHour.day).isSame(selectedDate, 'day') && (
-									<div key={workingHour._id}>
-										<p>
+									<ul key={workingHour._id}>
+										<li>
 											{moment(workingHour.day).format('dddd - DD/MM/YYYY')}{' '}
 											{moment(workingHour.startTime).format('HH:mm')} -{' '}
 											{moment(workingHour.endTime).format('HH:mm')}
-										</p>
-									</div>
+										</li>
+									</ul>
 								)
 						)}
 					</div>
 				))}
 			</div>
-		</div>
+		</>
 	);
 };
 export default ClientsCalendar;

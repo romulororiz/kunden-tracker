@@ -1,11 +1,10 @@
+@import 'breakpoints';
+
 .dashboard {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
+	justify-content: space-around;
 
-	.dashboard {
-		display: flex;
-		justify-content: center;
+	@media (width <= 1050px) {
+		flex-direction: column;
 	}
 }

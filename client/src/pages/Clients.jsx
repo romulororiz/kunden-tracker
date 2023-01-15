@@ -4,6 +4,7 @@ import { BsPencilSquare } from 'react-icons/bs';
 import { useCallback, useEffect, useState } from 'react';
 import { deleteClient, getClients, reset } from '@features/clients/clientSlice';
 import { useMemo } from 'react';
+import moment from 'moment';
 import ClientsTable from '@components/Layout/ClientsTable';
 import Spinner from '@components/Spinner';
 import '@styles/scss/ClientsTable.scss';
@@ -28,8 +29,10 @@ const Clients = () => {
 	const keys = ['name', 'address'];
 
 	// Filter on query
+	//todo
 	const search = data => {
 		return data.filter(item =>
+			// check if any of the keys match the query
 			keys.some(key => item[key].toLowerCase().includes(query))
 		);
 	};
