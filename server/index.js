@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 require('dotenv').config();
 require('colors');
@@ -24,6 +25,14 @@ app.use('/api/clients', require('./routes/clientRoutes'));
 
 // Error Handler
 app.use(errorHandler);
+
+// Serve frontend
+// Set build folder as static
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+});
 
 // Listen for requests
 app.listen(port, () => console.log(`Listening on port ${port}`));
