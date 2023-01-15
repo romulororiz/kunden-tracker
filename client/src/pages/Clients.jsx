@@ -17,6 +17,7 @@ const Clients = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [isUpdate, setIsUpdate] = useState(false);
 	const [selectedClientId, setSelectedClientId] = useState(null);
+	const [selectedMonth, setSelectedMonth] = useState(moment().format('MMMM'));
 
 	const dispatch = useDispatch();
 
@@ -101,15 +102,35 @@ const Clients = () => {
 		[]
 	);
 
-	const data = useMemo(
+	const months = moment.months();
+	const currentMonth = moment().format('MMMM');
+
+	// Filter clients out that have working hours in the selected month
+	const filteredClients = useMemo(
 		() =>
-			clients.map((client, index) => ({
+			clients.filter(client =>
+				client.workingHours.some(
+					workingHour =>
+						moment(workingHour.day).format('MMMM') === selectedMonth
+				)
+			),
+		[clients, selectedMonth]
+	);
+
+	const data = useMemo(() => {
+		return filteredClients.map(client => {
+			const filteredWorkingHours = client.workingHours.filter(
+				workingHour => moment(workingHour.day).format('MMMM') === selectedMonth
+			);
+			if (filteredWorkingHours.length === 0) return null;
+			return {
 				name: `${client.firstName} ${client.lastName}`,
 				address: `${client.address.street}, ${client.address.houseNumber} - ${client.address.postalCode} - ${client.address.city}`,
-				workingHours: client.workingHours.map(workingHour => {
+				workingHours: filteredWorkingHours.map((workingHour, index) => {
 					const dayOfWeek = new Intl.DateTimeFormat('en-US', {
 						weekday: 'long',
 					}).format(new Date(workingHour.day));
+					const dayAndMonth = moment(workingHour.day).format('DD/MM');
 					const startTime = new Intl.DateTimeFormat('en-US', {
 						hour: 'numeric',
 						minute: 'numeric',
@@ -123,7 +144,10 @@ const Clients = () => {
 					return (
 						<ul key={workingHour._id}>
 							<li key={index}>
-								<span className='day'>{dayOfWeek}:</span>{' '}
+								<div className='day_month_section'>
+									<span className='day'>{dayOfWeek}</span>
+									<span className='day_month'>{dayAndMonth}:</span>
+								</div>
 								<div className='times'>
 									{startTime} {startTime >= '12' ? 'pm' : 'am'} - {endTime}{' '}
 									{endTime >= '12' ? 'pm' : 'am'}
@@ -144,9 +168,9 @@ const Clients = () => {
 						/>
 					</div>
 				),
-			})),
-		[clients, handleDelete]
-	);
+			};
+		});
+	}, [filteredClients, handleDelete]);
 
 	if (isLoading) return <Spinner />;
 
@@ -172,12 +196,24 @@ const Clients = () => {
 									+
 								</button>
 							</Tooltip>
-							<input
-								type='text'
-								placeholder='Search'
-								onChange={e => setQuery(e.target.value)}
-								className='client__filter'
-							/>
+							<div className='client__filters'>
+								<select
+									defaultValue={currentMonth}
+									onChange={e => setSelectedMonth(e.target.value)}
+								>
+									{months.map((month, index) => (
+										<option key={index} value={month}>
+											{month}
+										</option>
+									))}
+								</select>
+								<input
+									type='text'
+									placeholder='Search'
+									onChange={e => setQuery(e.target.value)}
+									className='client__text-filter'
+								/>
+							</div>
 						</div>
 						<ClientsTable
 							columns={columns}

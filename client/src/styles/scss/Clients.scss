@@ -43,27 +43,44 @@
 			}
 		}
 
-		.client__filter {
-			align-self: flex-end;
-			width: 150px;
-			margin-bottom: 10px;
-			font-size: $font-size-md;
-			border: 1px solid $off-white-2;
-			padding: 6px 12px;
-			border-radius: 5px;
-			outline: none;
+		.client__filters {
 
-			&::placeholder {
-				color: lighten($color: $light-gray, $amount: 20%);
+			select {
+				color: $primary-darker;
+				height: 32px;
+				margin-right: 12px;
+				border: none;
+				outline: none;
+				border-radius: 8px;
+				padding: 5px 10px;
+
+				@include lg {
+					height: 25px;
+					font-size: $font-size-sm;
+				}
 			}
 
-			&:focus {
-				border: 1px solid #dfe1e3;
-			}
+			.client__text-filter {
+				align-self: flex-end;
+				width: 150px;
+				margin-bottom: 10px;
+				font-size: $font-size-md;
+				border: 1px solid $off-white-2;
+				padding: 6px 12px;
+				border-radius: 8px;
+				outline: none;
 
-			@include lg {
-				height: 25px;
-				font-size: $font-size-sm;
+				&::placeholder {
+					color: lighten($color: $light-gray, $amount: 20%);
+				}
+
+				&:focus {
+					border: 1px solid #dfe1e3;
+				}
+
+				@include lg {
+					font-size: $font-size-sm;
+				}
 			}
 		}
 	}

@@ -47,13 +47,23 @@ table {
 			justify-content: center;
 			list-style-type: none;
 
-			.day {
-				width: 80px;
+			.day_month_section {
+				width: 135px;
 				font-weight: 500;
 				display: flex;
-				justify-self: left;
-				margin-right: 30px;
+				margin-right: 20px;
 				color: lighten($color: $primary-darker, $amount: 15%);
+
+				.day {
+					width: 75px;
+					text-align: left;
+				}
+
+				.day_month {
+					width: 75px;
+					display: flex;
+					justify-content: right;
+				}
 			}
 
 			.times {
