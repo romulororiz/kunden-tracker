@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import useWindowSize from '@hooks/useWindowSize';
 import { useEffect, useState } from 'react';
 import '@styles/scss/Layout.scss';
+import Footer from './Footer';
 
 const Layout = () => {
 	const [showSidebar, setShowSidebar] = useState(false);
@@ -36,6 +37,7 @@ const Layout = () => {
 					<Outlet />
 				</main>
 			</div>
+			<Footer />
 		</div>
 	);
 };

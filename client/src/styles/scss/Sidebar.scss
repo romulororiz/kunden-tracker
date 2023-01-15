@@ -10,7 +10,7 @@
 	background-color: #fff;
 	font-family: Poppins, sans-serif;
 	transition: $ease-1;
-	z-index: 100;
+	z-index: 1001;
 	box-shadow: $base-box-shadow;
 
 	@include md {
