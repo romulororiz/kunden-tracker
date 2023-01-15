@@ -4,7 +4,7 @@
 	"description": "An application to manage clients and hours",
 	"main": "index.js",
 	"scripts": {
-		"start": "node server/index.js",
+		"start-server": "node server/index.js",
 		"server": "nodemon server/index.js",
 		"client": "npm run dev --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
