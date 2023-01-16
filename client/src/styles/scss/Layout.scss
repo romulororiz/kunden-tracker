@@ -5,9 +5,10 @@
 	padding: 0 2rem;
 
 	.main {
+		padding-top: 120px;
 		width: calc(100% - 200px);
 		margin-left: 200px;
-		padding-top: 120px;
+		padding-bottom: 80px;
 	}
 
 	.main__no-sidebar {
@@ -20,6 +21,7 @@
 	.main {
 		width: 100% !important;
 		margin-left: 0 !important;
+		margin-bottom: 106px;
 	}
 
 	.main__no-sidebar {

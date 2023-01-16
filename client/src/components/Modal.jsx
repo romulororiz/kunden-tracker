@@ -364,35 +364,37 @@ const Modal = ({ onClose, isUpdate, clientId }) => {
 					</div>
 				</form>
 
-				{isUpdate
-					? updatingClient.workingHours.map((workingHour, index) => (
-							<div key={index} className='modal__working-hours-item'>
-								<div className='modal__working-hours-times'>
-									<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
-									<span>{moment(workingHour.startTime).format('HH:mm')}</span>
-									<span>{moment(workingHour.endTime).format('HH:mm')}</span>
-								</div>
+				<div className='modal__working-hours-section'>
+					{isUpdate
+						? updatingClient.workingHours.map((workingHour, index) => (
+								<div key={index} className='modal__working-hours-item'>
+									<div className='modal__working-hours-times'>
+										<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
+										<span>{moment(workingHour.startTime).format('HH:mm')}</span>
+										<span>{moment(workingHour.endTime).format('HH:mm')}</span>
+									</div>
 
-								<IoIosCloseCircleOutline
-									onClick={() => handleRemoveWorkingHoursClick(index)}
-									className='modal__remove-hour'
-								/>
-							</div>
-					  ))
-					: workingHours.map((workingHour, index) => (
-							<div key={index} className='modal__working-hours-item'>
-								<div className='modal__working-hours-times'>
-									<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
-									<span>{moment(workingHour.startTime).format('HH:mm')}</span>
-									<span>{moment(workingHour.endTime).format('HH:mm')}</span>
+									<IoIosCloseCircleOutline
+										onClick={() => handleRemoveWorkingHoursClick(index)}
+										className='modal__remove-hour'
+									/>
 								</div>
+						  ))
+						: workingHours.map((workingHour, index) => (
+								<div key={index} className='modal__working-hours-item'>
+									<div className='modal__working-hours-times'>
+										<span>{moment(workingHour.day).format('DD/MM/YYYY')} </span>
+										<span>{moment(workingHour.startTime).format('HH:mm')}</span>
+										<span>{moment(workingHour.endTime).format('HH:mm')}</span>
+									</div>
 
-								<IoIosCloseCircleOutline
-									onClick={() => handleRemoveWorkingHoursClick(index)}
-									className='modal__remove-hour'
-								/>
-							</div>
-					  ))}
+									<IoIosCloseCircleOutline
+										onClick={() => handleRemoveWorkingHoursClick(index)}
+										className='modal__remove-hour'
+									/>
+								</div>
+						  ))}
+				</div>
 				<button
 					type='submit'
 					onClick={isUpdate ? handleUpdateSubmit : handleSubmit}

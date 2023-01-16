@@ -37,7 +37,7 @@ const Layout = () => {
 					<Outlet />
 				</main>
 			</div>
-			<Footer />
+			<Footer showSidebar={showSidebar} />
 		</div>
 	);
 };

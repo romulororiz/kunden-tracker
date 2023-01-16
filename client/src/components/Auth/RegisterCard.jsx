@@ -95,6 +95,7 @@ const RegisterCard = () => {
 						<label className='register-card__label'>First Name</label>
 						<input
 							className='register-card__input'
+							placeholder='First Name'
 							type='firstName'
 							name='firstName'
 							value={firstName}
@@ -106,6 +107,7 @@ const RegisterCard = () => {
 						<label className='register-card__label'>Last Name</label>
 						<input
 							className='register-card__input'
+							placeholder='Last Name'
 							type='lastName'
 							name='lastName'
 							value={lastName}
@@ -118,6 +120,7 @@ const RegisterCard = () => {
 				<label className='register-card__label'>Email</label>
 				<input
 					className='register-card__input'
+					placeholder='Email'
 					type='email'
 					name='email'
 					value={email}
@@ -129,6 +132,7 @@ const RegisterCard = () => {
 				<label className='register-card__label'>Password</label>
 				<input
 					className='register-card__input'
+					placeholder='Password'
 					type='password'
 					name='password'
 					value={password}
@@ -140,6 +144,7 @@ const RegisterCard = () => {
 				<label className='register-card__label'>Confirm Password</label>
 				<input
 					className='register-card__input'
+					placeholder='Confirm Password'
 					type='password'
 					name='password2'
 					value={password2}

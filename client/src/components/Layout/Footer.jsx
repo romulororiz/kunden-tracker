@@ -1,8 +1,8 @@
 import '@styles/scss/Footer.scss';
 
-const Footer = () => {
+const Footer = ({ showSidebar }) => {
 	return (
-		<div className='footer'>
+		<div className={`${showSidebar ? 'footer-sidebar footer' : 'footer'}`}>
 			<span>&copy; Romulo Roriz 2023</span>
 		</div>
 	);

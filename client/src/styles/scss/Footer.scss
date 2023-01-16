@@ -2,8 +2,8 @@
 
 .footer {
 	color: $off-white-2;
-	position: fixed;
 	display: flex;
+	position: fixed;
 	bottom: 0;
 	justify-content: center;
 	padding: 12px 0;
@@ -12,5 +12,13 @@
 
 	@include md {
 		font-size: $font-size-sm;
+	}
+}
+
+.footer-sidebar span {
+	margin-left: 200px;
+
+	@include md {
+		margin-left: 0;
 	}
 }

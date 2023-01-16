@@ -54,9 +54,15 @@ table {
 				margin-right: 20px;
 				color: lighten($color: $primary-darker, $amount: 15%);
 
+				@include md {
+					margin: 0 auto;
+					width: 50%;
+				}
+
 				.day {
 					width: 75px;
 					text-align: left;
+					margin-right: 10px;
 				}
 
 				.day_month {
