@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { convertMinutesToHours } from '../utils/convertMinutesToHours';
 
 const HourCounterWidget = () => {
-	const [selectedMonth, setSelectedMonth] = useState(null);
+	const [selectedMonth, setSelectedMonth] = useState(moment().format('MMMM'));
 	const [hoursWorked, setHoursWorked] = useState(0);
 	const [minutesWorked, setMinutesWorked] = useState(0);
 	const currentMonth = moment().format('MMMM');
