@@ -5,7 +5,7 @@ import Logo from '@assets/svgs/logo.svg';
 import { sidebarLinks } from '@config/data';
 import '@styles/scss/Sidebar.scss';
 
-const Sidebar = ({ showSidebar, sidebarRef }) => {
+const Sidebar = ({ showSidebar }) => {
 	const [windowDimension, setWindowDimension] = useState(0);
 
 	// Get window size
@@ -25,10 +25,7 @@ const Sidebar = ({ showSidebar, sidebarRef }) => {
 	}, [windowDimension, windowSize.width]);
 
 	return (
-		<aside
-			ref={sidebarRef}
-			className={`sidebar ${showSidebar ? '' : 'sidebar-hide'}`}
-		>
+		<aside className={`sidebar ${showSidebar ? '' : 'sidebar-hide'}`}>
 			{windowDimension <= 760 ? (
 				<h3 className='sidebar__logo sidebar__logo-text'>KT</h3>
 			) : (
@@ -51,14 +48,6 @@ const Sidebar = ({ showSidebar, sidebarRef }) => {
 					</Link>
 				</div>
 			))}
-
-			{/* <div className='sidebar__section sidebar__section-logout'>
-				<div className='sidebar__section-title'>Logout</div>
-				<Link className='sidebar__link' type='submit' onClick={submitHandler}>
-					<BiLogOut className='sidebar__link-icon' />
-					<span className='sidebar__link-text'>Logout</span>
-				</Link>
-			</div> */}
 		</aside>
 	);
 };
