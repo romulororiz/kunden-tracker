@@ -11,7 +11,7 @@ export function buildStyles() {
 		.pipe(sass().on('error', sass.logError))
 		.pipe(
 			autoprefixer({
-				overrideBrowserslist: ['last 2 versions'],
+				overrideBrowserslist: ['last 4 versions'],
 				cascade: false,
 			})
 		)

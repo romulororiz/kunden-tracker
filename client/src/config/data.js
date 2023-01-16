@@ -15,10 +15,4 @@ export const sidebarLinks = [
 		linkText: 'Clients',
 		Icon: ClientsIcon,
 	},
-	{
-		linkTitle: 'Customization',
-		link: '/theme',
-		linkText: 'Theme',
-		Icon: ThemeIcon,
-	},
 ];
