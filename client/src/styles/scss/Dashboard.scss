@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: space-around;
 
-	@media (width <= 1050px) {
+	@media (max-width: 1050px) {
 		flex-direction: column;
 	}
 }
