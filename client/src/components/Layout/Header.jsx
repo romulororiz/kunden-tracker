@@ -1,7 +1,20 @@
 import React from 'react';
 import '@styles/scss/Header.scss';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '@features/auth/authSlice';
+import { MdLogout } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 
 const Header = ({ user, setShowSidebar, showSidebar }) => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	// logout user
+	const submitHandler = () => {
+		dispatch(logout());
+		navigate('/login');
+	};
+
 	return (
 		<div className='header'>
 			<div
@@ -9,10 +22,6 @@ const Header = ({ user, setShowSidebar, showSidebar }) => {
 					showSidebar ? '' : 'sidebar__burger-no-sidebar'
 				}`}
 			>
-				{/* <div className='burger' onClick={() => setShowSidebar(!showSidebar)}>
-					{showSidebar ? 'close' : 'open'}
-				</div> */}
-
 				<input
 					id='sidebar__toggle'
 					type='checkbox'
@@ -32,7 +41,12 @@ const Header = ({ user, setShowSidebar, showSidebar }) => {
 				<div className='header__user-info'>
 					<h3>Hello, {user && user.firstName}</h3>
 				</div>
-				<div></div>
+				<div className='header__logout'>
+					<Link className='header__logout-link' onClick={submitHandler}>
+						<span className='header__logout-text'>Logout</span>
+						<MdLogout className='header__logout-icon' />
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

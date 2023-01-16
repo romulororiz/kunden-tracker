@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { logout } from '@features/auth/authSlice';
-import { BiLogOut } from 'react-icons/bi';
+import { Link, useLocation } from 'react-router-dom';
 import useWindowSize from '@hooks/useWindowSize';
 import Logo from '@assets/svgs/logo.svg';
 import { sidebarLinks } from '@config/data';
@@ -14,8 +11,7 @@ const Sidebar = ({ showSidebar, sidebarRef }) => {
 	// Get window size
 	const windowSize = useWindowSize();
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	// Get current location
 	const location = useLocation();
 
 	// check for current path
@@ -27,12 +23,6 @@ const Sidebar = ({ showSidebar, sidebarRef }) => {
 	useEffect(() => {
 		setWindowDimension(windowSize.width);
 	}, [windowDimension, windowSize.width]);
-
-	// logout user
-	const submitHandler = () => {
-		dispatch(logout());
-		navigate('/login');
-	};
 
 	return (
 		<aside
@@ -62,13 +52,13 @@ const Sidebar = ({ showSidebar, sidebarRef }) => {
 				</div>
 			))}
 
-			<div className='sidebar__section sidebar__section-logout'>
+			{/* <div className='sidebar__section sidebar__section-logout'>
 				<div className='sidebar__section-title'>Logout</div>
 				<Link className='sidebar__link' type='submit' onClick={submitHandler}>
 					<BiLogOut className='sidebar__link-icon' />
 					<span className='sidebar__link-text'>Logout</span>
 				</Link>
-			</div>
+			</div> */}
 		</aside>
 	);
 };

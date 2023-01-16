@@ -78,8 +78,27 @@
 
 	.header__items-wrapper {
 		@include container;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: flex-end;
 		width: 100%;
-		text-align: right;
+
+		.header__logout {
+			margin-left: 1rem;
+			display: flex;
+			align-items: center;
+
+			a {
+				color: $off-white-2;
+				display: flex;
+				align-items: center;
+
+				span {
+					margin-right: 0.25rem;
+				}
+			}
+		}
 
 		h3 {
 			font-weight: 500;

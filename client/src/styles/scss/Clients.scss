@@ -27,7 +27,7 @@
 			&:hover {
 				background-color: $primary-darker;
 				color: #fff;
-				transform: rotate(-360deg);
+				transform: rotate(360deg);
 			}
 
 			@include lg {
@@ -39,12 +39,10 @@
 			@include md {
 				width: 25px;
 				height: 25px;
-				font-size: $font-size-sm;
 			}
 		}
 
 		.client__filters {
-
 			select {
 				color: $primary-darker;
 				height: 32px;

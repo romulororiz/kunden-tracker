@@ -170,7 +170,7 @@ const Clients = () => {
 				),
 			};
 		});
-	}, [filteredClients, handleDelete]);
+	}, [filteredClients, handleDelete, selectedMonth]);
 
 	if (isLoading) return <Spinner />;
 
