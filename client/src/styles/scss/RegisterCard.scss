@@ -2,6 +2,7 @@
 
 .register-card {
 	@include authCard;
+	width: 420px;
 	padding: 35px;
 
 	.register-card__img-wrapper {
@@ -38,7 +39,7 @@
 			width: 100%;
 			display: flex;
 			margin-bottom: 6px;
-			font-size: $font-size-sm;
+			font-size: $font-size-md;
 		}
 
 		.register-card__input {
@@ -50,7 +51,7 @@
 			outline: none;
 			color: $light-gray;
 			transition: $ease-1;
-			font-size: $font-size-sm;
+			font-size: 12px;
 
 			&:focus {
 				border: 2px solid $primary;
