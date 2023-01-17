@@ -1,6 +1,6 @@
 import '@/styles/scss/Dashboard.scss';
 import ClientsCalendar from '@components/ClientsCalendar';
-import HourCounter from '../components/HourCounter';
+import HourCounter from '@components/HourCounter';
 
 const Dashboard = () => {
 	return (
